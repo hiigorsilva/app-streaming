@@ -26,7 +26,7 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
         fill
       />
       {/* INFORMAÇÕES */}
-      <div className='w-full h-full bg-gradient-to-t from-zinc-950 from-15% to-transparent to-40%'>
+      <div className='w-full h-full bg-gradient-to-t from-zinc-950 from-10% to-transparent to-40%'>
         <div className='w-full h-full flex items-center bg-gradient-to-r from-zinc-950/95 from-30% to-transparent to-55%'>
           {/* HEADLINE + INFO + ACTION */}
           <div className='max-w-xl p-5 space-y-4 -mt-28'>
@@ -61,9 +61,11 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
             </ul>
 
             {/* DESCRIÇÃO */}
-            <p className='text-lg text-zinc-400 line-clamp-3'>
-              {movie.overview}
-            </p>
+            {movie.overview && (
+              <p className='text-lg text-zinc-400 line-clamp-3'>
+                {movie.overview}
+              </p>
+            )}
 
             {/* BOTÃO */}
             <div className='flex items-center gap-4'>
