@@ -29,7 +29,7 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
       <div className='w-full h-full bg-gradient-to-t from-zinc-950 from-15% to-transparent to-40%'>
         <div className='w-full h-full flex items-center bg-gradient-to-r from-zinc-950/95 from-30% to-transparent to-55%'>
           {/* HEADLINE + INFO + ACTION */}
-          <div className='max-w-xl px-5 space-y-4 -mt-28'>
+          <div className='max-w-xl p-5 space-y-4 -mt-28'>
             {/* TAG DE SÉRIE */}
             <div className='flex items-center gap-2'>
               <Image
@@ -44,7 +44,7 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
             </div>
 
             {/* TÍTULO */}
-            <h2 className='font-semibold text-6xl text-zinc-50 line-clamp-2'>
+            <h2 className='font-semibold text-6xl text-zinc-50 leading-tight line-clamp-2'>
               {movie?.original_name}
             </h2>
 

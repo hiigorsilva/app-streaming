@@ -45,7 +45,7 @@ export default function Home() {
       )}
 
       {/* CATEGORIAS DE FILME */}
-      <section className='relative space-y-8 pl-5 -mt-28'>
+      <section className='relative space-y-8 -mt-28'>
         {categories?.map((category, index) => (
           <MovieRow
             key={index}

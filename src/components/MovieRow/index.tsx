@@ -9,8 +9,8 @@ type MovieProps = {
 export const MovieRow = ({ title, movies }: MovieProps) => {
   return (
     <div className='space-y-1'>
-      <h2 className='text-2xl font-semibold'>{title}</h2>
-      <ul className='flex items-center pr-5 overflow-x-auto'>
+      <h2 className='font-semibold text-2xl px-5'>{title}</h2>
+      <ul className='flex items-center px-5 overflow-x-auto'>
         {movies.length > 0 &&
           movies.map((movie) => <MovieItem key={movie.id} movie={movie} />)}
       </ul>
