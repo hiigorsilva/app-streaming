@@ -6,5 +6,6 @@ export type Movie = {
   poster_path: string
   backdrop_path: string
   vote_average: number
+  number_of_seasons?: number
   adult: boolean
 }
