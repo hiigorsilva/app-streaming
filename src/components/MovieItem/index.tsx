@@ -9,15 +9,14 @@ export const MovieItem = ({ movie }: MovieProps) => {
   return (
     <li
       key={movie.id}
-      className='relative min-w-40 min-h-60 rounded cursor-pointer transition scale-95 hover:scale-100'
+      className='relative min-w-40 min-h-60 cursor-pointer transition scale-95 hover:scale-100'
     >
       <Image
-        className={`w-full h-full object-cover`}
+        className={`w-full h-full object-cover rounded`}
         src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-        alt={movie.original_name}
+        alt={`${movie.original_name}`}
         fill
       />
-      <h3>{movie.title}</h3>
     </li>
   )
 }

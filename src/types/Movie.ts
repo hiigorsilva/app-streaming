@@ -7,5 +7,12 @@ export type Movie = {
   backdrop_path: string
   vote_average: number
   number_of_seasons?: number
+  first_air_date: string
+  genres: Genre[]
   adult: boolean
+}
+
+type Genre = {
+  id: number
+  name: string
 }
