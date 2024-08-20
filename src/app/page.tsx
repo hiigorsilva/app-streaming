@@ -1,16 +1,12 @@
 'use client'
 
 import { FeatureMovie } from '@/components/FeatureMovie'
+import { Header } from '@/components/Header'
 import { MovieRow } from '@/components/MovieRow'
 import { fetchMovieInfo } from '@/hooks/useGetMovieInfo'
 import { Movie } from '@/types/Movie'
 import { useCategories } from '@/utils/queries'
 import { useEffect, useState } from 'react'
-
-// type CategoryData = {
-//   title: string
-//   movies: Movie[]
-// }
 
 export default function Home() {
   const { data: categories, isLoading, error } = useCategories()
@@ -37,6 +33,9 @@ export default function Home() {
 
   return (
     <>
+      {/* HEADER */}
+      <Header />
+
       {/* FILME EM DESTAQUE */}
       {featureData && (
         <section>
