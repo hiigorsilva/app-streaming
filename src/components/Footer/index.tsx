@@ -44,6 +44,7 @@ export const Footer = () => {
           ))}
         </ul>
 
+        {/* COPYWRITING */}
         <div className='flex flex-col gap-4'>
           <Button
             size='sm'
