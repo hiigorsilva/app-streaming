@@ -1,7 +1,9 @@
 'use client'
 
 import { FeatureMovie } from '@/components/FeatureMovie'
+import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
+import { Loading } from '@/components/Loading'
 import { MovieRow } from '@/components/MovieRow'
 import { fetchMovieInfo } from '@/hooks/useGetMovieInfo'
 import { Movie } from '@/types/Movie'
@@ -11,6 +13,8 @@ import { useEffect, useState } from 'react'
 export default function Home() {
   const { data: categories, isLoading, error } = useCategories()
   const [featureData, setFeatureData] = useState<Movie | null>(null)
+
+  const [blackHeader, setBlackHeader] = useState(false)
 
   useEffect(() => {
     const loadFeatureMovie = async () => {
@@ -28,13 +32,21 @@ export default function Home() {
     loadFeatureMovie()
   }, [categories])
 
-  if (isLoading) return <div>Carregando...</div>
+  useEffect(() => {
+    const scrollListener = () => {
+      return window.scrollY > 10 ? setBlackHeader(true) : setBlackHeader(false)
+    }
+    window.addEventListener('scroll', scrollListener)
+    return () => window.removeEventListener('scroll', scrollListener)
+  }, [])
+
+  if (isLoading) return <Loading />
   if (error) return <div>Erro ao buscar categorias de filmes.</div>
 
   return (
     <>
       {/* HEADER */}
-      <Header />
+      <Header blackHeader={blackHeader} />
 
       {/* FILME EM DESTAQUE */}
       {featureData && (
@@ -53,6 +65,7 @@ export default function Home() {
           />
         ))}
       </section>
+      <Footer />
     </>
   )
 }

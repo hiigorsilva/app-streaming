@@ -1,25 +1,21 @@
-import Image from 'next/image'
 import Link from 'next/link'
+import { links } from './headerLinks'
+import { Logo } from './logo'
 
-export const Header = () => {
-  const links = [
-    { name: 'Filmes', url: '#' },
-    { name: 'Séries', url: '#' },
-    { name: 'Minha lista', url: '#' },
-    { name: 'Bombando', url: '#' },
-  ]
+type HeaderProps = {
+  blackHeader: boolean
+}
 
+export const Header = ({ blackHeader }: HeaderProps) => {
   return (
-    <header className='fixed top-0 left-0 right-0 z-50 h-[4.5rem] w-full bg-gradient-to-b from-zinc-950/70 from-20% to-transparent'>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 h-[4.5rem] w-full transition-all ease-in duration-300
+      ${blackHeader ? 'bg-zinc-950/95' : 'bg-gradient-to-b from-zinc-950/70 from-20% to-transparent'}`}
+    >
       <div className='w-full h-full flex justify-between items-center px-5'>
         <div className='flex items-center gap-12'>
           <Link href='/'>
-            <Image
-              src='/logo.svg'
-              alt='Logo do Netflix'
-              width={88}
-              height={24}
-            />
+            <Logo />
           </Link>
           <nav className=''>
             <ul className='flex items-center gap-6'>
