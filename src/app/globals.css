@@ -36,6 +36,6 @@
     @apply border-border [&::-webkit-scrollbar]:hidden;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-zinc-900 text-zinc-50;
   }
 }
