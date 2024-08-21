@@ -9,7 +9,7 @@ export const MovieItem = ({ movie }: MovieProps) => {
   return (
     <li
       key={movie.id}
-      className='relative min-w-40 min-h-60 cursor-pointer transition scale-95 hover:scale-100'
+      className='relative min-w-48 min-h-72 cursor-pointer transition scale-95 hover:scale-100'
     >
       <Image
         className={`w-full h-full object-cover rounded`}

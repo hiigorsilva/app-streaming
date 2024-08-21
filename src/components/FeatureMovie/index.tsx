@@ -26,23 +26,10 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
         fill
       />
       {/* INFORMAÇÕES */}
-      <div className='w-full h-full bg-gradient-to-t from-zinc-950 from-10% to-transparent to-40%'>
-        <div className='w-full h-full flex items-center bg-gradient-to-r from-zinc-950/95 from-30% to-transparent to-55%'>
+      <div className='w-full h-full bg-gradient-to-t from-zinc-900 from-10% to-transparent to-40%'>
+        <div className='w-full h-full flex items-center bg-gradient-to-r from-zinc-900/95 from-30% to-transparent to-55%'>
           {/* HEADLINE + INFO + ACTION */}
           <div className='max-w-xl p-5 space-y-4 -mt-28'>
-            {/* TAG DE SÉRIE */}
-            <div className='flex items-center gap-2'>
-              <Image
-                src='/simbol-netflix.svg'
-                alt='Logo da Netflix'
-                width={10}
-                height={18}
-              />
-              <span className='font-semibold text-sm text-zinc-400 tracking-[3px] uppercase'>
-                Série
-              </span>
-            </div>
-
             {/* TÍTULO */}
             <h2 className='font-semibold text-6xl text-zinc-50 leading-tight line-clamp-2'>
               {movie?.original_name}
@@ -62,7 +49,7 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
 
             {/* DESCRIÇÃO */}
             {movie.overview && (
-              <p className='text-lg text-zinc-400 line-clamp-3'>
+              <p className='text-lg text-zinc-300 line-clamp-3'>
                 {movie.overview}
               </p>
             )}
@@ -84,7 +71,7 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
                 </Link>
               </Button>
               <Button
-                className='flex items-center gap-2 font-semibold rounded transition-all text-zinc-50 bg-zinc-800 hover:bg-zinc-800/50'
+                className='flex items-center gap-2 font-semibold rounded transition-all text-zinc-50 bg-zinc-700/80 hover:bg-zinc-700/50'
                 asChild
               >
                 <Link href={`/list/add/${movie.id}`}>
@@ -95,7 +82,7 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
             </div>
 
             {/* GêNEROS */}
-            <p className='text-zinc-400 line-clamp-1'>
+            <p className='text-zinc-300 line-clamp-1'>
               <span className='font-semibold text-zinc-50'>Gêneros: </span>
               {genres}
             </p>
