@@ -56,7 +56,9 @@ export default function Home() {
       )}
 
       {/* CATEGORIAS DE FILME */}
-      <section className='w-full space-y-8 -mt-28'>
+      <section
+        className={`w-full space-y-8 ${featureData ? '-mt-28' : 'pt-24'}`}
+      >
         {categories?.map((category, index) => (
           <MovieRow
             key={index}

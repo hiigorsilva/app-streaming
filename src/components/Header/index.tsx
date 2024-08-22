@@ -49,14 +49,6 @@ export const Header = ({ blackHeader }: HeaderProps) => {
               <li>
                 <Button
                   size='icon'
-                  className='font-normal text-sm text-zinc-300 hover:text-zinc-50 bg-transparent hover:bg-transparent'
-                >
-                  Infantil
-                </Button>
-              </li>
-              <li>
-                <Button
-                  size='icon'
                   className='text-sm text-zinc-300 hover:text-zinc-50 bg-transparent hover:bg-transparent'
                 >
                   <BellIcon size={24} />

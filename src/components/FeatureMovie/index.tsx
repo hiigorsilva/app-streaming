@@ -25,12 +25,12 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
       />
       {/* INFORMAÇÕES */}
       <div className='w-full h-full bg-gradient-to-t from-zinc-950 from-10% to-transparent to-40%'>
-        <div className='w-full h-full flex items-center bg-gradient-to-r from-zinc-950/95 from-30% to-transparent to-55%'>
+        <div className='w-full h-full flex items-center bg-gradient-to-r from-zinc-950/90 from-50% md:from-30% to-transparent to-80% md:to-55%'>
           {/* HEADLINE + INFO + ACTION */}
           <div className='max-w-xl p-5 space-y-4 -mt-28'>
             {/* TÍTULO */}
-            <h2 className='font-semibold text-6xl text-zinc-50 leading-tight line-clamp-2'>
-              {movie?.original_name}
+            <h2 className='font-semibold text-4xl md:text-6xl text-zinc-50 leading-tight md:leading-tight line-clamp-2'>
+              {movie?.original_name || movie.title}
             </h2>
 
             {/* INFO DO FILME */}
@@ -47,7 +47,7 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
 
             {/* DESCRIÇÃO */}
             {movie.overview && (
-              <p className='text-lg text-zinc-400 line-clamp-3'>
+              <p className='text-lg text-zinc-300 md:text-zinc-400 line-clamp-3'>
                 {movie.overview}
               </p>
             )}
@@ -59,12 +59,14 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
                 asChild
               >
                 <Link href={`/watch/${movie.id}`}>
-                  <Image
-                    src='/icon-play.svg'
-                    alt='Ícone de play'
-                    width={14}
-                    height={14}
-                  />
+                  <div className='relative h-[14px] w-[14px]'>
+                    <Image
+                      className='h-[14px] w-auto object-contain'
+                      src='/icon-play.svg'
+                      alt='Ícone de play'
+                      fill
+                    />
+                  </div>
                   Assistir
                 </Link>
               </Button>

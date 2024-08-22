@@ -15,15 +15,17 @@ export const Footer = () => {
           {linksSocials.map((social) => (
             <li
               key={social.name}
-              className='relative size-6 transition-all duration-300 hover:scale-90 hover:opacity-70'
+              className='size-6 transition-all duration-300 hover:scale-90 hover:opacity-70'
             >
-              <Link href={social.url}>
+              <Link className='relative' href={social.url}>
                 <Image
                   className='object-contain'
                   src={social.icon}
                   alt={`Ícone do ${social.name}`}
                   title={social.name}
-                  fill
+                  width={24}
+                  height={24}
+                  // fill
                 />
               </Link>
             </li>
@@ -31,7 +33,7 @@ export const Footer = () => {
         </ul>
 
         {/* LINKS RODAPÉ */}
-        <ul className='grid grid-cols-4 w-full gap-y-2'>
+        <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 w-full gap-x-4 gap-y-2'>
           {linksFooter.map((link) => (
             <li key={link.name}>
               <Link

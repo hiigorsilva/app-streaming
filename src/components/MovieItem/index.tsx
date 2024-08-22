@@ -15,7 +15,9 @@ export const MovieItem = ({ movie }: MovieProps) => {
         className={`w-full h-full object-cover rounded`}
         src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
         alt={`${movie.original_name}`}
-        fill
+        width={300}
+        height={450}
+        priority
       />
     </li>
   )
