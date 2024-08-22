@@ -29,7 +29,7 @@ export const Header = ({ blackHeader }: HeaderProps) => {
               {links.map((link) => (
                 <li
                   key={link.name}
-                  className='text-sm text-zinc-200 hover:text-zinc-50'
+                  className='text-sm text-zinc-300 hover:text-zinc-50'
                 >
                   <Link href={link.url}>{link.name}</Link>
                 </li>
@@ -41,7 +41,7 @@ export const Header = ({ blackHeader }: HeaderProps) => {
               <li>
                 <Button
                   size='icon'
-                  className='text-sm text-zinc-200 hover:text-zinc-50 bg-transparent hover:bg-transparent'
+                  className='text-sm text-zinc-300 hover:text-zinc-50 bg-transparent hover:bg-transparent'
                 >
                   <SearchIcon size={24} />
                 </Button>
@@ -49,7 +49,7 @@ export const Header = ({ blackHeader }: HeaderProps) => {
               <li>
                 <Button
                   size='icon'
-                  className='font-normal text-sm text-zinc-200 hover:text-zinc-50 bg-transparent hover:bg-transparent'
+                  className='font-normal text-sm text-zinc-300 hover:text-zinc-50 bg-transparent hover:bg-transparent'
                 >
                   Infantil
                 </Button>
@@ -57,7 +57,7 @@ export const Header = ({ blackHeader }: HeaderProps) => {
               <li>
                 <Button
                   size='icon'
-                  className='text-sm text-zinc-200 hover:text-zinc-50 bg-transparent hover:bg-transparent'
+                  className='text-sm text-zinc-300 hover:text-zinc-50 bg-transparent hover:bg-transparent'
                 >
                   <BellIcon size={24} />
                 </Button>
