@@ -33,7 +33,7 @@
 
 @layer base {
   * {
-    @apply border-border [&::-webkit-scrollbar]:hidden;
+    @apply border-border select-none [&::-webkit-scrollbar]:hidden;
   }
   body {
     @apply bg-zinc-950 text-zinc-50;

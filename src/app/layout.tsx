@@ -9,7 +9,7 @@ import { Footer } from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Clone Netflix | Higor Silva',
+  title: 'Clone Netflix | Higor Code',
   description:
     'Assita filmes e séries com sua família no conforto de sua casa.',
 }
@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className={`${inter.className} flex flex-col min-h-dvh`}>
         <Providers>
           <Header />
-          <main className='h-full'>{children}</main>
+          <main className='h-full mb-auto'>{children}</main>
           <Footer />
           <ReactQueryDevtools initialIsOpen={false} />
         </Providers>

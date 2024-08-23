@@ -23,19 +23,20 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
         alt={`${movie?.original_name}`}
         priority
         fill
+        draggable={false}
       />
       {/* INFORMAÇÕES */}
-      <div className='w-full h-full bg-gradient-to-t from-zinc-950 from-10% to-transparent to-40%'>
-        <div className='w-full h-full flex items-center bg-gradient-to-r from-zinc-950/90 from-50% md:from-30% to-transparent to-80% md:to-55%'>
+      <div className='w-full h-full bg-gradient-to-t from-zinc-950/90 sm:from-zinc-950 from-40% sm:from-10% to-transparent to-70% sm:to-40%'>
+        <div className='w-full h-full flex items-end sm:items-center bg-transparent sm:bg-gradient-to-r from-zinc-950/90 from-50% md:from-30% to-transparent to-80% md:to-55%'>
           {/* HEADLINE + INFO + ACTION */}
-          <div className='max-w-xl p-5 space-y-4 -mt-28'>
+          <div className='max-w-none w-full sm:max-w-xl text-center sm:text-left space-y-4 p-5 mb-36 sm:mb-0 -mt-28'>
             {/* TÍTULO */}
-            <h2 className='font-semibold text-4xl md:text-6xl text-zinc-50 leading-tight md:leading-tight line-clamp-2'>
+            <h2 className='font-semibold text-4xl text-center sm:text-left md:text-6xl text-zinc-50 leading-tight md:leading-tight line-clamp-2'>
               {movie?.original_name || movie.title}
             </h2>
 
             {/* INFO DO FILME */}
-            <ul className='flex items-center gap-4 font-semibold text-zinc-50'>
+            <ul className='flex items-center gap-4 w-fit sm:w-full font-semibold text-zinc-50 mx-auto sm:mx-0'>
               <li className='text-green-400'>
                 {formatRating(Number(movie?.vote_average))}% relevante
               </li>
@@ -48,13 +49,13 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
 
             {/* DESCRIÇÃO */}
             {movie.overview && (
-              <p className='text-lg text-zinc-300 md:text-zinc-400 line-clamp-3'>
+              <p className='hidden sm:block text-lg text-zinc-300 md:text-zinc-400 line-clamp-3'>
                 {movie.overview}
               </p>
             )}
 
             {/* BOTÃO */}
-            <div className='flex items-center gap-4'>
+            <div className='flex items-center gap-4 w-fit sm:w-full mx-auto sm:mx-0'>
               <Button
                 className='flex items-center gap-2 font-semibold rounded text-zinc-950 bg-zinc-50 hover:bg-zinc-50/75'
                 asChild
@@ -75,7 +76,7 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
                 className='flex items-center gap-2 font-semibold rounded transition-all text-zinc-50 bg-zinc-800/80 hover:bg-zinc-800/50'
                 asChild
               >
-                <Link href={`/list/add/${movie.id}`}>
+                <Link href={`/details/${movie.id}`}>
                   <InfoIcon size={18} />
                   Mais informações
                 </Link>
@@ -83,10 +84,12 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
             </div>
 
             {/* GêNEROS */}
-            <p className='text-zinc-400 line-clamp-1'>
-              <span className='font-semibold text-zinc-50'>Gêneros: </span>
-              {genres}
-            </p>
+            {genres && (
+              <p className='text-zinc-400 line-clamp-1'>
+                <span className='font-semibold text-zinc-50'>Gênero: </span>
+                {genres}
+              </p>
+            )}
           </div>
         </div>
       </div>

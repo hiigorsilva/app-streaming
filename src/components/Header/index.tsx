@@ -74,6 +74,7 @@ export const Header = () => {
                     alt='Foto de perfil'
                     width={32}
                     height={32}
+                    draggable={false}
                   />
                 </Button>
               </li>

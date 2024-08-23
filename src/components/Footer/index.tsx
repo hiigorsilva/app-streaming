@@ -8,8 +8,8 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className='py-8 px-5 mt-16'>
-      <nav className='flex flex-col gap-8'>
+    <footer className='py-8 px-5 mt-16 bg-zinc-900'>
+      <nav className='flex flex-col items-center sm:items-start gap-8'>
         {/* REDES SOCIAIS */}
         <ul className='flex items-center gap-8'>
           {linksSocials.map((social) => (
@@ -25,7 +25,7 @@ export const Footer = () => {
                   title={social.name}
                   width={24}
                   height={24}
-                  // fill
+                  draggable={false}
                 />
               </Link>
             </li>
@@ -33,7 +33,7 @@ export const Footer = () => {
         </ul>
 
         {/* LINKS RODAPÉ */}
-        <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 w-full gap-x-4 gap-y-2'>
+        <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 text-center sm:text-left w-full gap-x-4 gap-y-2'>
           {linksFooter.map((link) => (
             <li key={link.name}>
               <Link
