@@ -1,15 +1,24 @@
+'use client'
+
 import Link from 'next/link'
 import { links } from './headerLinks'
 import { Logo } from './logo'
 import { Button } from '../ui/button'
 import Image from 'next/image'
 import { BellIcon, SearchIcon } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
-type HeaderProps = {
-  blackHeader: boolean
-}
+export const Header = () => {
+  const [blackHeader, setBlackHeader] = useState(false)
 
-export const Header = ({ blackHeader }: HeaderProps) => {
+  useEffect(() => {
+    const scrollListener = () => {
+      return window.scrollY > 10 ? setBlackHeader(true) : setBlackHeader(false)
+    }
+    window.addEventListener('scroll', scrollListener)
+    return () => window.removeEventListener('scroll', scrollListener)
+  }, [])
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 h-[4.5rem] w-full transition-all ease-in duration-300

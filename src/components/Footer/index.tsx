@@ -17,7 +17,7 @@ export const Footer = () => {
               key={social.name}
               className='size-6 transition-all duration-300 hover:scale-90 hover:opacity-70'
             >
-              <Link className='relative' href={social.url}>
+              <Link className='relative z-0' href={social.url}>
                 <Image
                   className='object-contain'
                   src={social.icon}

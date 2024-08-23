@@ -10,6 +10,7 @@ interface FeatureMovieProps {
 }
 
 export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
+  if (!movie) return
   const firstDate = new Date(movie.first_air_date)
   const genres = movie.genres.map((genre) => genre.name).join(', ')
 
