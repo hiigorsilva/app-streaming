@@ -4,6 +4,10 @@ import Image from 'next/image'
 import { Button } from '../ui/button'
 import Link from 'next/link'
 import { InfoIcon } from 'lucide-react'
+import { FeatureMovieTitle } from './FeatureMovieTitle'
+import { FeatureMovieInfo } from './FeatureMovieInfo'
+import { FeatureMovieDescription } from './FeatureMovieDescription'
+import { FeatureMovieGenres } from './FeatureMovieGenres'
 
 interface FeatureMovieProps {
   featureData: Movie
@@ -31,12 +35,12 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
           {/* HEADLINE + INFO + ACTION */}
           <div className='max-w-none w-full sm:max-w-xl text-center sm:text-left space-y-4 p-5 mb-36 sm:mb-0 -mt-28'>
             {/* TÍTULO */}
-            <h2 className='font-semibold text-4xl text-center sm:text-left md:text-6xl text-zinc-50 leading-tight md:leading-tight line-clamp-2'>
+            <FeatureMovieTitle>
               {movie?.original_name || movie.title}
-            </h2>
+            </FeatureMovieTitle>
 
             {/* INFO DO FILME */}
-            <ul className='flex items-center gap-4 w-fit sm:w-full font-semibold text-zinc-50 mx-auto sm:mx-0'>
+            <FeatureMovieInfo>
               <li className='text-green-400'>
                 {formatRating(Number(movie?.vote_average))}% relevante
               </li>
@@ -45,13 +49,13 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
                 {movie.number_of_seasons} temporada
                 {movie.number_of_seasons !== 1 ? 's' : ''}
               </li>
-            </ul>
+            </FeatureMovieInfo>
 
             {/* DESCRIÇÃO */}
             {movie.overview && (
-              <p className='hidden sm:block text-lg text-zinc-300 md:text-zinc-400 line-clamp-3'>
+              <FeatureMovieDescription>
                 {movie.overview}
-              </p>
+              </FeatureMovieDescription>
             )}
 
             {/* BOTÃO */}
@@ -76,7 +80,7 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
                 className='flex items-center gap-2 font-semibold rounded transition-all text-zinc-50 bg-zinc-800/80 hover:bg-zinc-800/50'
                 asChild
               >
-                <Link href={`/details/${movie.id}`}>
+                <Link href={`/movie/${movie.id}`}>
                   <InfoIcon size={18} />
                   Mais informações
                 </Link>
@@ -84,12 +88,7 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
             </div>
 
             {/* GêNEROS */}
-            {genres && (
-              <p className='text-zinc-400 line-clamp-1'>
-                <span className='font-semibold text-zinc-50'>Gênero: </span>
-                {genres}
-              </p>
-            )}
+            {genres && <FeatureMovieGenres>{genres}</FeatureMovieGenres>}
           </div>
         </div>
       </div>
