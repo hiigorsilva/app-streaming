@@ -9,6 +9,7 @@ export type Movie = {
   vote_average: number
   number_of_seasons?: number
   first_air_date: string
+  release_date: string
   genres: Genre[]
   adult: boolean
 }

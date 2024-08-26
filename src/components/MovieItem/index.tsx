@@ -12,7 +12,7 @@ export const MovieItem = ({ movie }: MovieProps) => {
       key={movie.id}
       className='relative min-w-48 min-h-72 cursor-pointer transition scale-95 hover:scale-100'
     >
-      <Link href={`/movie/${movie.id}`}>
+      <Link href={`/movies/${movie.id}`}>
         <Image
           className={`w-full h-full object-cover rounded`}
           src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}

@@ -1,21 +1,31 @@
-import { formatRating } from '@/functions/formatRating'
-import { Movie } from '@/types/Movie'
-import Image from 'next/image'
-import { Button } from '../ui/button'
-import Link from 'next/link'
-import { InfoIcon } from 'lucide-react'
-import { FeatureMovieTitle } from './FeatureMovieTitle'
-import { FeatureMovieInfo } from './FeatureMovieInfo'
-import { FeatureMovieDescription } from './FeatureMovieDescription'
-import { FeatureMovieGenres } from './FeatureMovieGenres'
+'use client'
 
-interface FeatureMovieProps {
-  featureData: Movie
+import { FeatureMovieDescription } from '@/components/FeatureMovie/FeatureMovieDescription'
+import { FeatureMovieGenres } from '@/components/FeatureMovie/FeatureMovieGenres'
+import { FeatureMovieInfo } from '@/components/FeatureMovie/FeatureMovieInfo'
+import { FeatureMovieTitle } from '@/components/FeatureMovie/FeatureMovieTitle'
+import { Loading } from '@/components/Loading'
+import { Button } from '@/components/ui/button'
+import { formatRating } from '@/functions/formatRating'
+import { useMovieInfo } from '@/utils/queries'
+import { InfoIcon } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+
+type MovieDetailsPageProps = {
+  params: {
+    id: number
+  }
 }
 
-export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
-  if (!movie) return
-  const firstDate = new Date(movie.first_air_date)
+const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
+  const movieId = params.id
+  const { data: movie, isLoading, error } = useMovieInfo(movieId)
+
+  if (isLoading) return <Loading />
+  if (error || !movie) return <div>Erro ao buscar informações do filme.</div>
+
+  const firstDate = new Date(movie.release_date)
   const genres = movie.genres.map((genre) => genre.name).join(', ')
 
   return (
@@ -23,32 +33,34 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
       {/* CAPA DO FILME */}
       <Image
         className='object-cover w-full h-full -z-[1]'
-        src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
-        alt={`${movie?.original_name}`}
+        src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+        alt={`${movie.original_name}`}
         priority
         fill
         draggable={false}
       />
       {/* INFORMAÇÕES */}
       <div className='w-full h-full bg-gradient-to-t from-zinc-950/90 sm:from-zinc-950 from-40% sm:from-10% to-transparent to-70% sm:to-40%'>
-        <div className='w-full h-full flex items-end sm:items-center sm:pt-28 bg-transparent sm:bg-gradient-to-r from-zinc-950/90 from-50% md:from-30% to-transparent to-80% md:to-55%'>
+        <div className='w-full h-full flex items-end sm:items-center bg-transparent sm:bg-gradient-to-r from-zinc-950/90 from-50% md:from-30% to-transparent to-80% md:to-55%'>
           {/* HEADLINE + INFO + ACTION */}
           <div className='max-w-none w-full sm:max-w-xl text-center sm:text-left space-y-4 p-5 mb-36 sm:mb-0 -mt-28'>
             {/* TÍTULO */}
             <FeatureMovieTitle>
-              {movie?.original_name || movie.title}
+              {movie.original_name || movie?.title}
             </FeatureMovieTitle>
 
             {/* INFO DO FILME */}
             <FeatureMovieInfo>
               <li className='text-green-400'>
-                {formatRating(Number(movie?.vote_average))}% relevante
+                {formatRating(Number(movie.vote_average))}% relevante
               </li>
               <li>{firstDate.getFullYear()}</li>
-              <li>
-                {movie.number_of_seasons} temporada
-                {movie.number_of_seasons !== 1 ? 's' : ''}
-              </li>
+              {movie.number_of_seasons && (
+                <li>
+                  {movie.number_of_seasons} temporada
+                  {movie.number_of_seasons !== 1 ? 's' : ''}
+                </li>
+              )}
             </FeatureMovieInfo>
 
             {/* DESCRIÇÃO */}
@@ -90,7 +102,7 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
             {/* GêNEROS */}
             {movie.genres && (
               <FeatureMovieGenres>
-                Generos: <span>{genres}</span>
+                <span className='text-zinc-400'>{genres}</span>
               </FeatureMovieGenres>
             )}
           </div>
@@ -99,3 +111,4 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
     </div>
   )
 }
+export default MovieDetailsPage
