@@ -23,17 +23,19 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
       {/* CAPA DO FILME */}
       <Image
         className='object-cover w-full h-full -z-[1]'
-        src={`https://image.tmdb.org/t/p/original${movie?.backdrop_path}`}
-        alt={`${movie?.original_name}`}
+        src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+        alt={`${movie.original_name}`}
         priority
         fill
         draggable={false}
       />
       {/* INFORMAÇÕES */}
       <div className='w-full h-full bg-gradient-to-t from-zinc-950/90 sm:from-zinc-950 from-40% sm:from-10% to-transparent to-70% sm:to-40%'>
-        <div className='w-full h-full flex items-end sm:items-center sm:pt-28 bg-transparent sm:bg-gradient-to-r from-zinc-950/90 from-50% md:from-30% to-transparent to-80% md:to-55%'>
+        <div className='w-full h-full flex items-end sm:items-center bg-transparent sm:bg-gradient-to-r from-zinc-950/90 from-50% md:from-30% to-transparent to-80% md:to-55%'>
           {/* HEADLINE + INFO + ACTION */}
-          <div className='max-w-none w-full sm:max-w-xl text-center sm:text-left space-y-4 p-5 mb-36 sm:mb-0 -mt-28'>
+          <div
+            className={`max-w-none w-full sm:max-w-xl text-center sm:text-left space-y-4 p-5 mb-36 sm:mb-0 -mt-16 pt-[72px]`}
+          >
             {/* TÍTULO */}
             <FeatureMovieTitle>
               {movie.name || movie.original_name}
