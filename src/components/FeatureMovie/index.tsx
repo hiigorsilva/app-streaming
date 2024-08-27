@@ -36,13 +36,13 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
           <div className='max-w-none w-full sm:max-w-xl text-center sm:text-left space-y-4 p-5 mb-36 sm:mb-0 -mt-28'>
             {/* TÍTULO */}
             <FeatureMovieTitle>
-              {movie?.original_name || movie.title}
+              {movie.name || movie.original_name}
             </FeatureMovieTitle>
 
             {/* INFO DO FILME */}
             <FeatureMovieInfo>
               <li className='text-green-400'>
-                {formatRating(Number(movie?.vote_average))}% relevante
+                {formatRating(Number(movie.vote_average))}% relevante
               </li>
               <li>{firstDate.getFullYear()}</li>
               <li>
@@ -64,7 +64,7 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
                 className='flex items-center gap-2 font-semibold rounded text-zinc-950 bg-zinc-50 hover:bg-zinc-50/75'
                 asChild
               >
-                <Link href={`/watch/${movie.id}`}>
+                <Link href={movie.homepage}>
                   <div className='relative h-[14px] w-[14px]'>
                     <Image
                       className='h-[14px] w-auto object-contain'
@@ -80,7 +80,7 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
                 className='flex items-center gap-2 font-semibold rounded transition-all text-zinc-50 bg-zinc-800/80 hover:bg-zinc-800/50'
                 asChild
               >
-                <Link href={`/movie/${movie.id}`}>
+                <Link href={`/movies/${movie.id}`}>
                   <InfoIcon size={18} />
                   Mais informações
                 </Link>
@@ -88,11 +88,7 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
             </div>
 
             {/* GêNEROS */}
-            {movie.genres && (
-              <FeatureMovieGenres>
-                Generos: <span>{genres}</span>
-              </FeatureMovieGenres>
-            )}
+            {movie.genres && <FeatureMovieGenres>{genres}</FeatureMovieGenres>}
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ type FeatureMovieInfoProps = {
 }
 export const FeatureMovieInfo = ({ children }: FeatureMovieInfoProps) => {
   return (
-    <ul className='flex items-center gap-4 w-fit sm:w-full font-semibold text-zinc-50 mx-auto sm:mx-0'>
+    <ul className='flex items-center gap-8 w-fit sm:w-full font-semibold text-zinc-50 mx-auto sm:mx-0'>
       {children}
     </ul>
   )

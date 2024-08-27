@@ -5,7 +5,7 @@ import { CategoryData, fetchCategories } from '@/hooks/getCategories'
 import { fetchMovieId } from '@/hooks/getMovieId'
 import { Movie } from '@/types/Movie'
 import Error from 'next/error'
-import { fetchMovieToprated } from '@/hooks/getMovieToprated'
+import { fetchMovieFeature } from '@/hooks/getMovieToprated'
 
 export const useCategories = () => {
   return useQuery<CategoryData[], Error>({
@@ -21,9 +21,9 @@ export const useMovieInfo = (id: number) => {
   })
 }
 
-export const useMoviePopulars = () => {
-  return useQuery({
+export const useMovieFeature = () => {
+  return useQuery<Movie, Error>({
     queryKey: ['toprated'],
-    queryFn: fetchMovieToprated,
+    queryFn: fetchMovieFeature,
   })
 }

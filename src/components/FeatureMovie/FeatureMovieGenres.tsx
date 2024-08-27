@@ -6,9 +6,9 @@ type FeatureMovieGenresProps = {
 
 export const FeatureMovieGenres = ({ children }: FeatureMovieGenresProps) => {
   return (
-    <p className='font-semibold text-zinc-50'>
-      <span>Gêneros: </span>
-      {children}
+    <p className='text-zinc-400'>
+      <span className='font-semibold text-zinc-50'>Gêneros: </span>
+      <span>{children}</span>
     </p>
   )
 }

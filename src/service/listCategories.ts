@@ -2,9 +2,9 @@ import { MovieCategory } from '@/types/MovieCategory'
 
 export const endpoints: MovieCategory[] = [
   {
-    slug: 'originals',
-    title: 'Originais do Netflix',
-    endpoint: '/discover/tv?with_network=213',
+    slug: 'populars',
+    title: 'Populares',
+    endpoint: '/tv/top_rated',
   },
   {
     slug: 'trending',

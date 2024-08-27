@@ -9,7 +9,7 @@ import { formatCurrencyToBRL } from '@/functions/formatCurrency'
 import { formatterNumber } from '@/functions/formatNumber'
 import { formatRating } from '@/functions/formatRating'
 import { formatTimeDuration } from '@/functions/formatTimeDuration'
-import { useMovieInfo, useMoviePopulars } from '@/utils/queries'
+import { useMovieInfo } from '@/utils/queries'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -22,9 +22,6 @@ type MovieDetailsPageProps = {
 const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
   const movieId = params.id
   const { data: movie, isLoading, error } = useMovieInfo(movieId)
-  const { data: moviePopular } = useMoviePopulars()
-
-  console.log(moviePopular)
 
   if (isLoading) return <Loading />
   if (error || !movie) return <div>Erro ao buscar informações do filme.</div>
@@ -63,6 +60,9 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
                   {formatRating(Number(movie.vote_average))}% relevante
                 </li>
                 <li>{firstDate.getFullYear()}</li>
+                <li className='font-normal text-xs -tracking-tighter uppercase py-px px-1.5 rounded border border-zinc-400'>
+                  HD
+                </li>
               </FeatureMovieInfo>
 
               {/* DESCRIÇÃO */}
