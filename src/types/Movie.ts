@@ -4,17 +4,30 @@ export type Movie = {
   name: string
   original_name: string
   overview: string
+  homepage: string
   poster_path: string
   backdrop_path: string
-  vote_average: number
+  production_companies: ProductionCompany[]
   number_of_seasons?: number
   first_air_date: string
   release_date: string
+  budget: number
+  revenue: number
+  runtime: number
   genres: Genre[]
   adult: boolean
+  vote_average: number
+  vote_count: number
 }
 
 type Genre = {
   id: number
   name: string
+}
+
+type ProductionCompany = {
+  id: number
+  logo_path: string
+  name: string
+  origin_country: string
 }

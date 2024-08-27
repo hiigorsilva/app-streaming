@@ -13,7 +13,7 @@ export const FeatureMovieDescription = ({
   return (
     <p
       className={cn(
-        `hidden sm:block text-lg text-zinc-300 md:text-zinc-400 line-clamp-3 sm:line-clamp-3`,
+        `hidden sm:block text-lg text-zinc-200 md:text-zinc-400 line-clamp-3 sm:line-clamp-4`,
         className
       )}
       {...props}

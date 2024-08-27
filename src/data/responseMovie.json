@@ -1,0 +1,74 @@
+{
+  "adult": false,
+  "backdrop_path": "/lgkPzcOSnTvjeMnuFzozRO5HHw1.jpg",
+  "belongs_to_collection": {
+    "id": 86066,
+    "name": "Meu Malvado Favorito: Coleção",
+    "poster_path": "/vCXbRZwV09KChsc0MoQbMUHkRK1.jpg",
+    "backdrop_path": "/37xamYKRUGCRux532lKcZdVGYuR.jpg"
+  },
+  "budget": 100000000,
+  "genres": [
+    {
+      "id": 16,
+      "name": "Animação"
+    },
+    {
+      "id": 10751,
+      "name": "Família"
+    },
+    {
+      "id": 35,
+      "name": "Comédia"
+    },
+    {
+      "id": 28,
+      "name": "Ação"
+    }
+  ],
+  "homepage": "https://www.universalpictures.com/movies/despicable-me-4",
+  "id": 519182,
+  "imdb_id": "tt7510222",
+  "origin_country": ["US"],
+  "original_language": "en",
+  "original_title": "Despicable Me 4",
+  "overview": "Nesta sequência, o vilão mais amado do planeta retorna e agora Gru, Lucy, Margo, Edith e Agnes dão as boas-vindas a um novo membro da família: Gru Jr., que pretende atormentar seu pai. Enquanto se adapta com o pequeno, Gru enfrenta um novo inimigo, Maxime Le Mal, forçando sua namorada Valentina e a família a fugir do perigo.",
+  "popularity": 2656.774,
+  "poster_path": "/jWYTtmxSuWVXP22hxAeXdQZLZrh.jpg",
+  "production_companies": [
+    {
+      "id": 33,
+      "logo_path": "/8lvHyhjr8oUKOOy2dKXoALWKdp0.png",
+      "name": "Universal Pictures",
+      "origin_country": "US"
+    },
+    {
+      "id": 6704,
+      "logo_path": "/fOG2oY4m1YuYTQh4bMqqZkmgOAI.png",
+      "name": "Illumination",
+      "origin_country": "US"
+    }
+  ],
+  "production_countries": [
+    {
+      "iso_3166_1": "US",
+      "name": "United States of America"
+    }
+  ],
+  "release_date": "2024-06-20",
+  "revenue": 885397740,
+  "runtime": 94,
+  "spoken_languages": [
+    {
+      "english_name": "English",
+      "iso_639_1": "en",
+      "name": "English"
+    }
+  ],
+  "status": "Released",
+  "tagline": "As coisas ficaram um pouco mais desprezíveis.",
+  "title": "Meu Malvado Favorito 4",
+  "video": false,
+  "vote_average": 7.257,
+  "vote_count": 1249
+}

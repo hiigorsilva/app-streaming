@@ -3,7 +3,7 @@
 import { FeatureMovie } from '@/components/FeatureMovie'
 import { Loading } from '@/components/Loading'
 import { MovieRow } from '@/components/MovieRow'
-import { fetchMovieInfo } from '@/hooks/useGetMovieInfo'
+import { fetchMovieInfo } from '@/hooks/getMovieInfo'
 import { Movie } from '@/types/Movie'
 import { useCategories } from '@/utils/queries'
 import { useEffect, useState } from 'react'
