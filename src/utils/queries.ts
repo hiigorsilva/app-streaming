@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query'
 import { CategoryData, fetchCategories } from '@/hooks/getCategories'
-import { fetchMovieId } from '@/hooks/getMovieId'
+import { fetchMovieId, fetchTvId } from '@/hooks/getMovieId'
 import { Movie } from '@/types/Movie'
 import Error from 'next/error'
 import { fetchMovieFeature } from '@/hooks/getMovieToprated'
@@ -14,10 +14,16 @@ export const useCategories = () => {
   })
 }
 
-export const useMovieInfo = (id: number) => {
+export const useMovieInfo = (id: number, type: 'movie' | 'tv') => {
   return useQuery<Movie, Error>({
-    queryKey: ['movies', id],
-    queryFn: () => fetchMovieId(id),
+    queryKey: [type, id],
+    queryFn: () => {
+      if (type === 'movie') {
+        return fetchMovieId(id)
+      } else {
+        return fetchTvId(id)
+      }
+    },
   })
 }
 

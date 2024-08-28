@@ -16,20 +16,26 @@ import Link from 'next/link'
 type MovieDetailsPageProps = {
   params: {
     id: number
+    type: 'movie' | 'tv'
   }
 }
 
 const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
   const movieId = params.id
-  const { data: movie, isLoading, error } = useMovieInfo(movieId)
-  console.log(movie)
+  const type = params.type
+
+  const { data: movie, isLoading, error } = useMovieInfo(movieId, type)
 
   if (isLoading) return <Loading />
   if (error || !movie) return <div>Erro ao buscar informações do filme.</div>
 
-  const firstDate = new Date(movie.release_date).getFullYear()
+  const movieDate = new Date(movie.release_date).getFullYear()
+  const tvDate = new Date(movie.first_air_date).getFullYear()
+
   const genres = movie.genres.map((genre) => genre.name).join(', ')
-  const languages = movie.spoken_languages.map((lang) => lang.name).join(', ')
+  const languages = movie.spoken_languages
+    .map((lang) => lang.english_name || lang.name)
+    .join(', ')
   const prodCompanies = movie.production_companies
     .map((prod) => prod.name)
     .join(', ')
@@ -53,7 +59,7 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
           <div className='max-w-none w-full sm:max-w-xl text-center sm:text-left space-y-4 p-5 mb-36 sm:mb-0'>
             {/* TÍTULO */}
             <FeatureMovieTitle>
-              {movie.title || movie.original_name}
+              {movie.name || movie.title || movie.original_name}
             </FeatureMovieTitle>
 
             {/* BOTÃO */}
@@ -62,7 +68,10 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
                 className='flex items-center gap-2 max-w-xs w-full font-semibold rounded text-zinc-950 bg-zinc-50 hover:bg-zinc-50/75'
                 asChild
               >
-                <Link href={movie.homepage} target='_blank'>
+                <Link
+                  href={movie.homepage || `https://www.netflix.com/browse`}
+                  target='_blank'
+                >
                   <div className='relative h-[14px] w-[14px]'>
                     <Image
                       className='h-[14px] w-auto object-contain'
@@ -96,7 +105,7 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
         <ul className='space-y-4'>
           <li className='flex items-center gap-3 font-semibold'>
             <span className='text-green-500'>{`${formatRating(Number(movie.vote_average))}% relevante`}</span>
-            <span>{firstDate}</span>
+            <span>{movieDate || tvDate}</span>
             <span className='flex justify-between items-center w-fit h-fit text-xs py-px px-1.5 rounded border border-zinc-200'>
               HD
             </span>
@@ -113,7 +122,7 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
           </li>
 
           {movie.overview && (
-            <li className='max-w-md w-full flex-1'>
+            <li className='max-w-lg w-full flex-1'>
               <h3 className='font-semibold text-zinc-50'>Sinópse: </h3>
               <p className='font-normal text-zinc-400'>{movie.overview}</p>
             </li>
@@ -125,6 +134,15 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
             <li className='flex gap-1.5'>
               <h3 className='font-semibold text-zinc-50'>Produção:</h3>
               <p className='font-normal text-zinc-400'>{prodCompanies}</p>
+            </li>
+          )}
+
+          {movie.number_of_seasons && (
+            <li className='flex gap-1.5'>
+              <h3 className='font-semibold text-zinc-50'>Temporadas:</h3>
+              <p className='font-normal text-zinc-400'>
+                {movie.number_of_seasons}
+              </p>
             </li>
           )}
 

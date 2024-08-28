@@ -17,6 +17,7 @@ export const FeatureMovie = ({ featureData: movie }: FeatureMovieProps) => {
   if (!movie) return
   const firstDate = new Date(movie.first_air_date)
   const genres = movie.genres.map((genre) => genre.name).join(', ')
+  console.log(movie)
 
   return (
     <div className='relative h-dvh w-full'>

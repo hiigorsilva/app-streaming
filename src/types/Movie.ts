@@ -11,6 +11,7 @@ export type Movie = {
   number_of_seasons?: number
   first_air_date: string
   release_date: string
+  last_air_date: string
   budget: number
   revenue: number
   runtime: number
@@ -28,6 +29,7 @@ type Genre = {
 
 type Languages = {
   name: string
+  english_name: string
 }
 
 type ProductionCompany = {
