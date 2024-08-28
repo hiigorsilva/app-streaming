@@ -2,9 +2,4 @@
 
 ### TODO
 
-[Continar de onde parei](https://youtu.be/tBweoUiMsDg?t=10960)
-
-<hr>
-
-- [] Fazer o responsivo do Header
-- [] Criar requisições para cada link do Header
+- [ ] Resolver Bug de mostrar detalhes do filme clicado. Somente da aba de Populares e Série destaque da Home

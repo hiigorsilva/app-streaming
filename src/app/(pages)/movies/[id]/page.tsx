@@ -53,7 +53,7 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
           <div className='max-w-none w-full sm:max-w-xl text-center sm:text-left space-y-4 p-5 mb-36 sm:mb-0'>
             {/* TÍTULO */}
             <FeatureMovieTitle>
-              {movie?.title || movie.original_name}
+              {movie.title || movie.original_name}
             </FeatureMovieTitle>
 
             {/* BOTÃO */}
@@ -94,7 +94,7 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
       {/* DETALHES DO FILME */}
       <div className='grid grid-cols-2 gap-3 p-5'>
         <ul className='space-y-4'>
-          <li className='flex gap-3 font-semibold'>
+          <li className='flex items-center gap-3 font-semibold'>
             <span className='text-green-500'>{`${formatRating(Number(movie.vote_average))}% relevante`}</span>
             <span>{firstDate}</span>
             <span className='flex justify-between items-center w-fit h-fit text-xs py-px px-1.5 rounded border border-zinc-200'>
@@ -104,30 +104,45 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
 
           <li className='flex gap-1.5'>
             <h3 className='font-semibold text-zinc-50'>Gêneros: </h3>
-            <p className='text-zinc-400'>{genres}</p>
+            {genres && <p className='text-zinc-400'>{genres}</p>}
+            {!genres && (
+              <p className='text-zinc-400'>
+                Nenhum gênero foi adicionado a esta obra.
+              </p>
+            )}
           </li>
 
-          <li className='max-w-md w-full flex-1'>
-            <h3 className='font-semibold text-zinc-50'>Sinópse: </h3>
-            <p className='font-normal text-zinc-400'>{movie.overview}</p>
-          </li>
+          {movie.overview && (
+            <li className='max-w-md w-full flex-1'>
+              <h3 className='font-semibold text-zinc-50'>Sinópse: </h3>
+              <p className='font-normal text-zinc-400'>{movie.overview}</p>
+            </li>
+          )}
         </ul>
 
         <ul className='space-y-4'>
-          <li className='flex gap-1.5'>
-            <h3 className='font-semibold text-zinc-50'>Produção:</h3>
-            <p className='font-normal text-zinc-400'>{prodCompanies}</p>
-          </li>
+          {prodCompanies && (
+            <li className='flex gap-1.5'>
+              <h3 className='font-semibold text-zinc-50'>Produção:</h3>
+              <p className='font-normal text-zinc-400'>{prodCompanies}</p>
+            </li>
+          )}
 
-          <li className='flex gap-1.5'>
-            <h3 className='font-semibold text-zinc-50'>Duração: </h3>
-            <p className='text-zinc-400'>{formatTimeDuration(movie.runtime)}</p>
-          </li>
+          {movie.runtime > 0 && (
+            <li className='flex gap-1.5'>
+              <h3 className='font-semibold text-zinc-50'>Duração: </h3>
+              <p className='text-zinc-400'>
+                {formatTimeDuration(movie.runtime)}
+              </p>
+            </li>
+          )}
 
-          <li className='flex gap-1.5'>
-            <h3 className='font-semibold text-zinc-50'>Idioma:</h3>
-            <p className='text-zinc-400'>{languages}</p>
-          </li>
+          {languages && (
+            <li className='flex gap-1.5'>
+              <h3 className='font-semibold text-zinc-50'>Idioma:</h3>
+              <p className='text-zinc-400'>{languages}</p>
+            </li>
+          )}
 
           {movie.budget > 0 && (
             <li className='flex gap-1.5'>
@@ -138,19 +153,23 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
             </li>
           )}
 
-          <li className='flex gap-1.5'>
-            <h3 className='font-semibold text-zinc-50'>Receita: </h3>
-            <p className='text-zinc-400'>
-              {formatCurrencyToBRL(movie.revenue)}
-            </p>
-          </li>
+          {movie.revenue > 0 && (
+            <li className='flex gap-1.5'>
+              <h3 className='font-semibold text-zinc-50'>Receita: </h3>
+              <p className='text-zinc-400'>
+                {formatCurrencyToBRL(movie.revenue)}
+              </p>
+            </li>
+          )}
 
-          <li className='flex gap-1.5'>
-            <h3 className='font-semibold text-zinc-50'>Avaliação:</h3>
-            <p className='text-zinc-400'>
-              Mais de {formatterNumber(movie.vote_count)} avaliações feitas.
-            </p>
-          </li>
+          {movie.vote_count > 0 && (
+            <li className='flex gap-1.5'>
+              <h3 className='font-semibold text-zinc-50'>Avaliação:</h3>
+              <p className='text-zinc-400'>
+                Mais de {formatterNumber(movie.vote_count)} avaliações feitas.
+              </p>
+            </li>
+          )}
         </ul>
       </div>
     </>
