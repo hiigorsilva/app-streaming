@@ -18,6 +18,7 @@ export type Movie = {
   genres: Genre[]
   spoken_languages: Languages[]
   adult: boolean
+  tagline: string
   vote_average: number
   vote_count: number
 }

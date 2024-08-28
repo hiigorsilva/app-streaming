@@ -58,9 +58,16 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
           {/* HEADLINE + INFO + ACTION */}
           <div className='max-w-none w-full sm:max-w-xl text-center sm:text-left space-y-4 p-5 mb-36 sm:mb-0'>
             {/* TÍTULO */}
-            <FeatureMovieTitle>
-              {movie.name || movie.title || movie.original_name}
-            </FeatureMovieTitle>
+            <div className='space-y-1'>
+              <FeatureMovieTitle>
+                {movie.name || movie.title || movie.original_name}
+              </FeatureMovieTitle>
+
+              {/* TAGLINE */}
+              {movie.tagline && (
+                <p className='text-zinc-400 line-clamp-3'>{movie.tagline}</p>
+              )}
+            </div>
 
             {/* BOTÃO */}
             <div className='flex items-center gap-4 w-fit sm:w-full mx-auto sm:mx-0'>
@@ -101,7 +108,7 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
       </div>
 
       {/* DETALHES DO FILME */}
-      <div className='grid grid-cols-2 gap-3 p-5'>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-3 p-5'>
         <ul className='space-y-4'>
           <li className='flex items-center gap-3 font-semibold'>
             <span className='text-green-500'>{`${formatRating(Number(movie.vote_average))}% relevante`}</span>
@@ -131,7 +138,7 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
 
         <ul className='space-y-4'>
           {prodCompanies && (
-            <li className='flex gap-1.5'>
+            <li className='flex flex-col md:flex-row gap-1.5'>
               <h3 className='font-semibold text-zinc-50'>Produção:</h3>
               <p className='font-normal text-zinc-400'>{prodCompanies}</p>
             </li>
