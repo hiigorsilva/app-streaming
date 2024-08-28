@@ -15,6 +15,7 @@ export type Movie = {
   revenue: number
   runtime: number
   genres: Genre[]
+  spoken_languages: Languages[]
   adult: boolean
   vote_average: number
   vote_count: number
@@ -22,6 +23,10 @@ export type Movie = {
 
 type Genre = {
   id: number
+  name: string
+}
+
+type Languages = {
   name: string
 }
 

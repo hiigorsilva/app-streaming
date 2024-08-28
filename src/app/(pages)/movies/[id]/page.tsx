@@ -1,7 +1,6 @@
 'use client'
 
-import { FeatureMovieDescription } from '@/components/FeatureMovie/FeatureMovieDescription'
-import { FeatureMovieInfo } from '@/components/FeatureMovie/FeatureMovieInfo'
+import { ButtonIcon } from '@/components/ButtonIcon'
 import { FeatureMovieTitle } from '@/components/FeatureMovie/FeatureMovieTitle'
 import { Loading } from '@/components/Loading'
 import { Button } from '@/components/ui/button'
@@ -10,6 +9,7 @@ import { formatterNumber } from '@/functions/formatNumber'
 import { formatRating } from '@/functions/formatRating'
 import { formatTimeDuration } from '@/functions/formatTimeDuration'
 import { useMovieInfo } from '@/utils/queries'
+import { PlusIcon, ThumbsDownIcon, ThumbsUpIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -22,19 +22,22 @@ type MovieDetailsPageProps = {
 const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
   const movieId = params.id
   const { data: movie, isLoading, error } = useMovieInfo(movieId)
+  console.log(movie)
 
   if (isLoading) return <Loading />
   if (error || !movie) return <div>Erro ao buscar informações do filme.</div>
 
-  const firstDate = new Date(movie.release_date)
-  // const genres = movie.genres.map((genre) => genre.name).join(', ')
+  const firstDate = new Date(movie.release_date).getFullYear()
+  const genres = movie.genres.map((genre) => genre.name).join(', ')
+  const languages = movie.spoken_languages.map((lang) => lang.name).join(', ')
   const prodCompanies = movie.production_companies
     .map((prod) => prod.name)
     .join(', ')
 
   return (
     <>
-      <div className='relative h-dvh w-full'>
+      {/* CAPA DE DESTAQUE */}
+      <div className='relative h-[90dvh] w-full'>
         {/* CAPA DO FILME */}
         <Image
           className='object-cover w-full h-full -z-[1]'
@@ -45,87 +48,108 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
           draggable={false}
         />
         {/* INFORMAÇÕES */}
-        <div className='w-full h-full bg-gradient-to-t from-zinc-950/90 sm:from-zinc-950 from-40% sm:from-10% to-transparent to-70% sm:to-40%'>
-          <div className='w-full h-full flex items-end sm:items-center bg-transparent sm:bg-gradient-to-r from-zinc-950/90 from-50% md:from-30% to-transparent to-80% md:to-55%'>
-            {/* HEADLINE + INFO + ACTION */}
-            <div className='max-w-none w-full sm:max-w-xl text-center sm:text-left space-y-4 p-5 mb-36 sm:mb-0'>
-              {/* TÍTULO */}
-              <FeatureMovieTitle>
-                {movie?.title || movie.original_name}
-              </FeatureMovieTitle>
+        <div className='w-full h-full flex items-end bg-gradient-to-t from-zinc-950/90 sm:from-zinc-950 from-40% sm:from-10% to-transparent to-70% sm:to-60%'>
+          {/* HEADLINE + INFO + ACTION */}
+          <div className='max-w-none w-full sm:max-w-xl text-center sm:text-left space-y-4 p-5 mb-36 sm:mb-0'>
+            {/* TÍTULO */}
+            <FeatureMovieTitle>
+              {movie?.title || movie.original_name}
+            </FeatureMovieTitle>
 
-              {/* INFO DO FILME */}
-              <FeatureMovieInfo>
-                <li className='text-green-400'>
-                  {formatRating(Number(movie.vote_average))}% relevante
-                </li>
-                <li>{firstDate.getFullYear()}</li>
-                <li className='font-normal text-xs -tracking-tighter uppercase py-px px-1.5 rounded border border-zinc-400'>
-                  HD
-                </li>
-              </FeatureMovieInfo>
+            {/* BOTÃO */}
+            <div className='flex items-center gap-4 w-fit sm:w-full mx-auto sm:mx-0'>
+              <Button
+                className='flex items-center gap-2 max-w-xs w-full font-semibold rounded text-zinc-950 bg-zinc-50 hover:bg-zinc-50/75'
+                asChild
+              >
+                <Link href={movie.homepage} target='_blank'>
+                  <div className='relative h-[14px] w-[14px]'>
+                    <Image
+                      className='h-[14px] w-auto object-contain'
+                      src='/icon-play.svg'
+                      alt='Ícone de play'
+                      fill
+                    />
+                  </div>
+                  Assistir
+                </Link>
+              </Button>
 
-              {/* DESCRIÇÃO */}
-              {movie.overview && (
-                <FeatureMovieDescription>
-                  {movie.overview}
-                </FeatureMovieDescription>
-              )}
+              <ButtonIcon disabled>
+                <PlusIcon className='text-zinc-50' size={20} />
+              </ButtonIcon>
 
-              {/* BOTÃO */}
-              <div className='flex items-center gap-4 w-fit sm:w-full mx-auto sm:mx-0'>
-                <Button
-                  className='flex items-center gap-2 max-w-xs w-full font-semibold rounded text-zinc-950 bg-zinc-50 hover:bg-zinc-50/75'
-                  asChild
-                >
-                  <Link href={movie.homepage} target='_blank'>
-                    <div className='relative h-[14px] w-[14px]'>
-                      <Image
-                        className='h-[14px] w-auto object-contain'
-                        src='/icon-play.svg'
-                        alt='Ícone de play'
-                        fill
-                      />
-                    </div>
-                    Assistir
-                  </Link>
-                </Button>
-              </div>
+              <ButtonIcon disabled>
+                <ThumbsUpIcon className='text-zinc-50' size={20} />
+              </ButtonIcon>
+
+              <ButtonIcon disabled>
+                <ThumbsDownIcon className='text-zinc-50' size={20} />
+              </ButtonIcon>
             </div>
           </div>
         </div>
       </div>
 
-      <div></div>
-
-      <div className='w-fit h-fit px-5 py-8'>
-        <ul className='space-y-1'>
-          <li className='font-normal text-sm text-zinc-400 p-2 bg-zinc-900/50 rounded'>
-            <span className='block font-semibold text-zinc-50'>Produção: </span>
-            {prodCompanies}
-          </li>
-
-          <li className='font-normal text-sm text-zinc-400 p-2 bg-zinc-900/50 rounded'>
-            <span className='block font-semibold text-zinc-50'>
-              Orçamento:{' '}
+      {/* DETALHES DO FILME */}
+      <div className='grid grid-cols-2 gap-3 p-5'>
+        <ul className='space-y-4'>
+          <li className='flex gap-3 font-semibold'>
+            <span className='text-green-500'>{`${formatRating(Number(movie.vote_average))}% relevante`}</span>
+            <span>{firstDate}</span>
+            <span className='flex justify-between items-center w-fit h-fit text-xs py-px px-1.5 rounded border border-zinc-200'>
+              HD
             </span>
-            {formatCurrencyToBRL(movie.budget)}
           </li>
 
-          <li className='font-normal text-sm text-zinc-400 p-2 bg-zinc-900/50 rounded'>
-            <span className='block font-semibold text-zinc-50'>Receita: </span>
-            {formatCurrencyToBRL(movie.revenue)}
+          <li className='flex gap-1.5'>
+            <h3 className='font-semibold text-zinc-50'>Gêneros: </h3>
+            <p className='text-zinc-400'>{genres}</p>
           </li>
 
-          <li className='font-normal text-sm text-zinc-400 p-2 bg-zinc-900/50 rounded'>
-            <span className='block font-semibold text-zinc-50'>Duração: </span>
-            {formatTimeDuration(movie.runtime)}
+          <li className='max-w-md w-full flex-1'>
+            <h3 className='font-semibold text-zinc-50'>Sinópse: </h3>
+            <p className='font-normal text-zinc-400'>{movie.overview}</p>
+          </li>
+        </ul>
+
+        <ul className='space-y-4'>
+          <li className='flex gap-1.5'>
+            <h3 className='font-semibold text-zinc-50'>Produção:</h3>
+            <p className='font-normal text-zinc-400'>{prodCompanies}</p>
           </li>
 
-          <li className='font-normal text-sm text-zinc-400 p-2 bg-zinc-900/50 rounded'>
-            <span className='block font-semibold text-zinc-50'>Avaliação:</span>
-            Mais de {formatterNumber(movie.vote_count)} pessoas avaliaram este
-            filme.
+          <li className='flex gap-1.5'>
+            <h3 className='font-semibold text-zinc-50'>Duração: </h3>
+            <p className='text-zinc-400'>{formatTimeDuration(movie.runtime)}</p>
+          </li>
+
+          <li className='flex gap-1.5'>
+            <h3 className='font-semibold text-zinc-50'>Idioma:</h3>
+            <p className='text-zinc-400'>{languages}</p>
+          </li>
+
+          {movie.budget > 0 && (
+            <li className='flex gap-1.5'>
+              <h3 className='font-semibold text-zinc-50'>Orçamento: </h3>
+              <p className='text-zinc-400'>
+                {formatCurrencyToBRL(movie.budget)}
+              </p>
+            </li>
+          )}
+
+          <li className='flex gap-1.5'>
+            <h3 className='font-semibold text-zinc-50'>Receita: </h3>
+            <p className='text-zinc-400'>
+              {formatCurrencyToBRL(movie.revenue)}
+            </p>
+          </li>
+
+          <li className='flex gap-1.5'>
+            <h3 className='font-semibold text-zinc-50'>Avaliação:</h3>
+            <p className='text-zinc-400'>
+              Mais de {formatterNumber(movie.vote_count)} avaliações feitas.
+            </p>
           </li>
         </ul>
       </div>
