@@ -5,11 +5,32 @@ import { links } from './headerLinks'
 import { Logo } from './logo'
 import { Button } from '../ui/button'
 import Image from 'next/image'
-import { BellIcon, SearchIcon } from 'lucide-react'
+import { BellIcon, MenuIcon, SearchIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '../ui/sheet'
 
 export const Header = () => {
   const [blackHeader, setBlackHeader] = useState(false)
+  const [isMobileMenu, setIsMobileMenu] = useState(false)
+
+  useEffect(() => {
+    const handleMobileMenu = () => {
+      const widthScreen = window.innerWidth
+      const breakPoint = 768
+      setIsMobileMenu(widthScreen < breakPoint)
+    }
+    handleMobileMenu()
+
+    window.addEventListener('resize', handleMobileMenu)
+    return () => window.removeEventListener('resize', handleMobileMenu)
+  }, [])
 
   useEffect(() => {
     const scrollListener = () => {
@@ -31,8 +52,8 @@ export const Header = () => {
             <Logo />
           </Link>
 
-          {/* NAVEGAÇÃO */}
-          <nav className='flex justify-between items-center w-full'>
+          {/* MENU DESKTOP */}
+          <nav className='hidden md:flex justify-between items-center w-full'>
             {/* LINKS */}
             <ul className='flex items-center gap-6'>
               {links.map((link) => (
@@ -63,6 +84,7 @@ export const Header = () => {
                   <BellIcon size={24} />
                 </Button>
               </li>
+
               <li>
                 <Button
                   size='icon'
@@ -80,6 +102,80 @@ export const Header = () => {
               </li>
             </ul>
           </nav>
+
+          {/* MENU MOBILE */}
+          {isMobileMenu && (
+            <Sheet>
+              <SheetTrigger>
+                <div className='p-1 rounded bg-zinc-900/30 hover:bg-transparent'>
+                  <MenuIcon size={28} />
+                </div>
+              </SheetTrigger>
+              <SheetContent className='space-y-4 overflow-y-auto'>
+                <SheetHeader className='text-left space-y-8'>
+                  <SheetTitle className='w-fit'>
+                    <Logo />
+                  </SheetTitle>
+                  <SheetDescription className='w-full flex justify-start items-center gap-3 text-zinc-200 bg-transparent hover:bg-transparent'>
+                    <Image
+                      className='rounded'
+                      src='/profile.webp'
+                      alt='Foto de perfil'
+                      width={28}
+                      height={28}
+                      draggable={false}
+                    />
+                    Bem vindo, Higor!
+                  </SheetDescription>
+                </SheetHeader>
+
+                <ul className='space-y-4'>
+                  <div className='w-full h-px bg-zinc-800/50' />
+
+                  <div className='space-y-2'>
+                    <li>
+                      <Link
+                        href='/'
+                        className='w-full flex justify-start items-center gap-3 text-sm text-zinc-300 hover:text-red-500 p-2 rounded bg-transparent hover:bg-zinc-900/50'
+                      >
+                        <SearchIcon size={20} />
+                        Search
+                      </Link>
+                    </li>
+
+                    <li>
+                      <Link
+                        href='/'
+                        className='w-full flex justify-start items-center gap-3 text-sm text-zinc-300 hover:text-red-500 p-2 rounded bg-transparent hover:bg-zinc-900/50'
+                      >
+                        <BellIcon size={20} />
+                        Notificações
+                      </Link>
+                    </li>
+                  </div>
+
+                  <div className='w-full h-px bg-zinc-800/50' />
+
+                  <div className='space-y-2'>
+                    {links.map((link) => (
+                      <li
+                        key={link.name}
+                        className='text-sm text-zinc-200 hover:text-red-500 p-2 rounded hover:bg-zinc-900/50'
+                      >
+                        <Link
+                          href={link.url}
+                          className='flex items-center gap-3'
+                        >
+                          {link.icon}
+                          {link.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </div>
+                </ul>
+              </SheetContent>
+            </Sheet>
+          )}
         </div>
       </div>
     </header>
