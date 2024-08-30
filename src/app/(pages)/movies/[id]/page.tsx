@@ -43,7 +43,7 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
   return (
     <>
       {/* CAPA DE DESTAQUE */}
-      <div className='relative h-[90dvh] w-full'>
+      <div className='relative h-[80dvh] w-full'>
         {/* CAPA DO FILME */}
         <Image
           className='object-cover w-full h-full -z-[1]'
@@ -56,7 +56,7 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
         {/* INFORMAÇÕES */}
         <div className='w-full h-full flex items-end bg-gradient-to-t from-zinc-950/90 sm:from-zinc-950 from-40% sm:from-10% to-transparent to-70% sm:to-60%'>
           {/* HEADLINE + INFO + ACTION */}
-          <div className='max-w-none w-full sm:max-w-xl text-center sm:text-left space-y-4 p-5 mb-36 sm:mb-0'>
+          <div className='max-w-none w-full sm:max-w-xl text-center sm:text-left space-y-4 p-5 mb-20 sm:mb-8'>
             {/* TÍTULO */}
             <div className='space-y-1'>
               <FeatureMovieTitle>
@@ -70,9 +70,9 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
             </div>
 
             {/* BOTÃO */}
-            <div className='flex items-center gap-4 w-fit sm:w-full mx-auto sm:mx-0'>
+            <div className='flex items-center gap-2 md:gap-4 w-fit sm:w-full mx-auto sm:mx-0'>
               <Button
-                className='flex items-center gap-2 max-w-xs w-full font-semibold rounded text-zinc-950 bg-zinc-50 hover:bg-zinc-50/75'
+                className='flex items-center gap-2 max-w-xs min-w-36 w-full font-semibold rounded text-zinc-950 bg-zinc-50 hover:bg-zinc-50/75'
                 asChild
               >
                 <Link
@@ -108,17 +108,22 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
       </div>
 
       {/* DETALHES DO FILME */}
+      <div className='flex items-center gap-3 px-5 font-semibold'>
+        <span className='text-green-500'>{`${formatRating(Number(movie.vote_average))}% relevante`}</span>
+        <span>{movieDate || tvDate}</span>
+        {movie.runtime > 0 && (
+          <span className='text-zinc-400'>
+            {formatTimeDuration(movie.runtime)}
+          </span>
+        )}
+        <span className='flex justify-between items-center w-fit h-fit text-xs py-px px-1.5 rounded border border-zinc-200'>
+          HD
+        </span>
+      </div>
+
       <div className='grid grid-cols-1 md:grid-cols-2 gap-3 p-5'>
         <ul className='space-y-4'>
-          <li className='flex items-center gap-3 font-semibold'>
-            <span className='text-green-500'>{`${formatRating(Number(movie.vote_average))}% relevante`}</span>
-            <span>{movieDate || tvDate}</span>
-            <span className='flex justify-between items-center w-fit h-fit text-xs py-px px-1.5 rounded border border-zinc-200'>
-              HD
-            </span>
-          </li>
-
-          <li className='flex gap-1.5'>
+          <li className={`flex ${genres.length > 2 ? 'flex-col' : ''} gap-1.5`}>
             <h3 className='font-semibold text-zinc-50'>Gêneros: </h3>
             {genres && <p className='text-zinc-400'>{genres}</p>}
             {!genres && (

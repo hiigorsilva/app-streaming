@@ -36,7 +36,7 @@ export const MovieRow = ({ title, movies }: MovieProps) => {
       {/* ARROW LEFT */}
       <button
         onClick={handleLeftArrow}
-        className={`absolute left-0 z-30 w-12 h-72 flex items-center bg-zinc-950/80 opacity-100 md:opacity-0 transition-all md:group-hover:opacity-100 duration-300`}
+        className={`absolute left-0 z-30 w-12 h-72 hidden md:flex items-center bg-zinc-950/80 opacity-100 md:opacity-0 transition-all md:group-hover:opacity-100 duration-300`}
       >
         <ChevronLeft strokeWidth={1.5} size={190} />
       </button>
@@ -44,7 +44,7 @@ export const MovieRow = ({ title, movies }: MovieProps) => {
       {/* ARROW RIGHT */}
       <button
         onClick={handleRightArrow}
-        className='absolute right-0 z-30 w-12 h-72 flex items-center bg-zinc-950/80 opacity-100 md:opacity-0 transition-all md:group-hover:opacity-100 duration-300'
+        className='absolute right-0 z-30 w-12 h-72 hidden md:flex items-center bg-zinc-950/80 opacity-100 md:opacity-0 transition-all md:group-hover:opacity-100 duration-300'
       >
         <ChevronRight strokeWidth={1.5} size={190} />
       </button>
