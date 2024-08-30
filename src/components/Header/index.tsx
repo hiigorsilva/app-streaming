@@ -43,7 +43,7 @@ export const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 h-[4.5rem] w-full transition-all ease-in duration-300
-      ${blackHeader ? 'bg-zinc-950/95' : 'bg-gradient-to-b from-zinc-950/70 from-20% to-transparent'}`}
+      ${blackHeader ? 'backdrop-blur bg-zinc-950/90' : 'bg-gradient-to-b from-zinc-950/80 from-30% to-zinc-950/5'}`}
     >
       <div className='w-full h-full flex justify-between items-center px-5'>
         <div className='w-full flex justify-between items-center gap-16'>
@@ -108,7 +108,7 @@ export const Header = () => {
             <Sheet>
               <SheetTrigger>
                 <div className='p-1 rounded bg-zinc-900/30 hover:bg-transparent'>
-                  <MenuIcon size={28} />
+                  <MenuIcon size={32} />
                 </div>
               </SheetTrigger>
               <SheetContent className='space-y-4 overflow-y-auto'>
@@ -116,7 +116,7 @@ export const Header = () => {
                   <SheetTitle className='w-fit'>
                     <Logo />
                   </SheetTitle>
-                  <SheetDescription className='w-full flex justify-start items-center gap-3 text-zinc-200 bg-transparent hover:bg-transparent'>
+                  <SheetDescription className='w-full flex justify-start items-center gap-3 text-base text-zinc-200 py-4 bg-transparent hover:bg-transparent'>
                     <Image
                       className='rounded'
                       src='/profile.webp'
@@ -130,13 +130,13 @@ export const Header = () => {
                 </SheetHeader>
 
                 <ul className='space-y-4'>
-                  <div className='w-full h-px bg-zinc-800/50' />
+                  <div className='w-full h-px bg-zinc-700/50' />
 
                   <div className='space-y-2'>
                     <li>
                       <Link
                         href='/'
-                        className='w-full flex justify-start items-center gap-3 text-sm text-zinc-300 hover:text-red-500 p-2 rounded bg-transparent hover:bg-zinc-900/50'
+                        className='w-full flex justify-start items-center gap-3 text-base text-zinc-300 hover:text-red-500 p-4 rounded bg-transparent hover:bg-zinc-900/50'
                       >
                         <SearchIcon size={20} />
                         Search
@@ -146,7 +146,7 @@ export const Header = () => {
                     <li>
                       <Link
                         href='/'
-                        className='w-full flex justify-start items-center gap-3 text-sm text-zinc-300 hover:text-red-500 p-2 rounded bg-transparent hover:bg-zinc-900/50'
+                        className='w-full flex justify-start items-center gap-3 text-base text-zinc-300 hover:text-red-500 p-4 rounded bg-transparent hover:bg-zinc-900/50'
                       >
                         <BellIcon size={20} />
                         Notificações
@@ -160,7 +160,7 @@ export const Header = () => {
                     {links.map((link) => (
                       <li
                         key={link.name}
-                        className='text-sm text-zinc-200 hover:text-red-500 p-2 rounded hover:bg-zinc-900/50'
+                        className='text-base text-zinc-200 hover:text-red-500 p-4 rounded hover:bg-zinc-900/50'
                       >
                         <Link
                           href={link.url}

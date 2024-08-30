@@ -54,7 +54,7 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
           draggable={false}
         />
         {/* INFORMAÇÕES */}
-        <div className='w-full h-full flex items-end bg-gradient-to-t from-zinc-950/90 sm:from-zinc-950 from-40% sm:from-10% to-transparent to-70% sm:to-60%'>
+        <div className='w-full h-full flex items-end bg-gradient-to-t from-zinc-950 sm:from-zinc-950 from-10% sm:from-10% to-transparent to-70% sm:to-60%'>
           {/* HEADLINE + INFO + ACTION */}
           <div className='max-w-none w-full sm:max-w-xl text-center sm:text-left space-y-4 p-5 mb-20 sm:mb-8'>
             {/* TÍTULO */}
