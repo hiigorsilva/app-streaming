@@ -9,7 +9,7 @@ import { useCategories } from '@/utils/queries'
 import { useEffect, useState } from 'react'
 
 export default function Home() {
-  const { data: categories, isLoading, error } = useCategories()
+  const { data: categories, isFetching, error } = useCategories()
   const [featureData, setFeatureData] = useState<Movie | null>(null)
 
   useEffect(() => {
@@ -28,8 +28,11 @@ export default function Home() {
     loadFeatureMovie()
   }, [categories])
 
-  if (isLoading) return <Loading />
-  if (error) return <div>Erro ao buscar categorias de filmes.</div>
+  if (isFetching) return <Loading />
+  if (error)
+    return (
+      <div className='mt-20 px-5'>Erro ao buscar categorias de filmes.</div>
+    )
 
   return (
     <>
