@@ -54,54 +54,56 @@ const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
           draggable={false}
         />
         {/* INFORMAÇÕES */}
-        <div className='w-full h-full flex items-end bg-gradient-to-t from-zinc-950 sm:from-zinc-950 from-10% sm:from-10% to-transparent to-70% sm:to-60%'>
-          {/* HEADLINE + INFO + ACTION */}
-          <div className='max-w-none w-full sm:max-w-xl text-center sm:text-left space-y-4 p-5 mb-20 sm:mb-8'>
-            {/* TÍTULO */}
-            <div className='space-y-1'>
-              <FeatureMovieTitle>
-                {movie.name || movie.title || movie.original_name}
-              </FeatureMovieTitle>
+        <div className='w-full h-full flex items-end bg-gradient-to-t from-zinc-950 from-10% sm:from-10% to-transparent to-70% sm:to-60%'>
+          <div className='h-full w-full flex items-end bg-gradient-to-r from-zinc-950/80 from-0% md:from-30% to-transparent to-0% md:to-60%'>
+            {/* HEADLINE + INFO + ACTION */}
+            <div className='max-w-none w-full sm:max-w-xl text-center sm:text-left space-y-4 p-5 mb-20 sm:mb-8'>
+              {/* TÍTULO */}
+              <div className='space-y-1'>
+                <FeatureMovieTitle>
+                  {movie.name || movie.title || movie.original_name}
+                </FeatureMovieTitle>
 
-              {/* TAGLINE */}
-              {movie.tagline && (
-                <p className='text-zinc-400 line-clamp-3'>{movie.tagline}</p>
-              )}
-            </div>
+                {/* TAGLINE */}
+                {movie.tagline && (
+                  <p className='text-zinc-400 line-clamp-3'>{movie.tagline}</p>
+                )}
+              </div>
 
-            {/* BOTÃO */}
-            <div className='flex items-center gap-2 md:gap-4 w-fit sm:w-full mx-auto sm:mx-0'>
-              <Button
-                className='flex items-center gap-2 max-w-xs min-w-36 w-full font-semibold rounded text-zinc-950 bg-zinc-50 hover:bg-zinc-50/75'
-                asChild
-              >
-                <Link
-                  href={movie.homepage || `https://www.netflix.com/browse`}
-                  target='_blank'
+              {/* BOTÃO */}
+              <div className='flex items-center gap-2 md:gap-4 w-fit sm:w-full mx-auto sm:mx-0'>
+                <Button
+                  className='flex items-center gap-2 max-w-xs min-w-36 w-full font-semibold rounded text-zinc-950 bg-zinc-50 hover:bg-zinc-50/75'
+                  asChild
                 >
-                  <div className='relative h-[14px] w-[14px]'>
-                    <Image
-                      className='h-[14px] w-auto object-contain'
-                      src='/icon-play.svg'
-                      alt='Ícone de play'
-                      fill
-                    />
-                  </div>
-                  Assistir
-                </Link>
-              </Button>
+                  <Link
+                    href={movie.homepage || `https://www.netflix.com/browse`}
+                    target='_blank'
+                  >
+                    <div className='relative h-[14px] w-[14px]'>
+                      <Image
+                        className='h-[14px] w-auto object-contain'
+                        src='/icon-play.svg'
+                        alt='Ícone de play'
+                        fill
+                      />
+                    </div>
+                    Assistir
+                  </Link>
+                </Button>
 
-              <ButtonIcon disabled>
-                <PlusIcon className='text-zinc-50' size={20} />
-              </ButtonIcon>
+                <ButtonIcon disabled>
+                  <PlusIcon className='text-zinc-50' size={20} />
+                </ButtonIcon>
 
-              <ButtonIcon disabled>
-                <ThumbsUpIcon className='text-zinc-50' size={20} />
-              </ButtonIcon>
+                <ButtonIcon disabled>
+                  <ThumbsUpIcon className='text-zinc-50' size={20} />
+                </ButtonIcon>
 
-              <ButtonIcon disabled>
-                <ThumbsDownIcon className='text-zinc-50' size={20} />
-              </ButtonIcon>
+                <ButtonIcon disabled>
+                  <ThumbsDownIcon className='text-zinc-50' size={20} />
+                </ButtonIcon>
+              </div>
             </div>
           </div>
         </div>
