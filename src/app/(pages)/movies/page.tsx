@@ -1,6 +1,7 @@
 'use client'
 
 import { ContainerGrid } from '@/components/ContainerGrid'
+import { ErrorComponent } from '@/components/ErrorComponent'
 import { Loading } from '@/components/Loading'
 import { MovieItem } from '@/components/MovieItem'
 import { useMovies } from '@/utils/queries'
@@ -10,7 +11,7 @@ const MoviesPage = () => {
 
   if (!movies) return
   if (isFetching) return <Loading />
-  if (error) return <div className='mt-20 px-5'>Erro ao carregar filmes.</div>
+  if (error) return <ErrorComponent>Erro ao carregar filmes.</ErrorComponent>
 
   return (
     <section className='mt-[72px] pt-4 space-y-4'>
