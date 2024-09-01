@@ -1,6 +1,6 @@
 'use client'
 
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { CategoryData, fetchCategories } from '@/hooks/getCategories'
 import { fetchMovieId, fetchTvId } from '@/hooks/getMovieId'
 import { Movie } from '@/types/Movie'
@@ -9,6 +9,7 @@ import { fetchMovieFeature } from '@/hooks/getMovieToprated'
 import { fetchMovies } from '@/hooks/getMovies'
 import { fetchSeries } from '@/hooks/getSeries'
 
+// GET CATEGORIES
 export const useCategories = () => {
   return useQuery<CategoryData[], Error>({
     queryKey: ['categories'],
@@ -16,15 +17,31 @@ export const useCategories = () => {
   })
 }
 
+// GET MOVIES
 export const useMovies = () => {
   return useQuery<Movie[], Error>({
     queryKey: ['movies'],
     queryFn: fetchMovies,
   })
 }
+export const useMoviesPrefetch = async () => {
+  const queryClient = useQueryClient() // pega o mesmo provider criado
+  return await queryClient.prefetchQuery({
+    queryKey: ['movies'],
+    queryFn: fetchMovies,
+  })
+}
 
+// GET SERIES
 export const useSeries = () => {
   return useQuery<Movie[], Error>({
+    queryKey: ['tv'],
+    queryFn: fetchSeries,
+  })
+}
+export const useSeriesPrefetch = async () => {
+  const queryClient = useQueryClient() // pega o mesmo provider criado
+  return await queryClient.prefetchQuery({
     queryKey: ['tv'],
     queryFn: fetchSeries,
   })

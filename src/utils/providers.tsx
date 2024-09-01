@@ -11,7 +11,7 @@ export const Providers = ({ children }: ProvidersProps) => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: 30 * (60 * 1000), // 30 minutos
+        staleTime: 60 * (60 * 1000), // 60 minutos
       },
     },
   })

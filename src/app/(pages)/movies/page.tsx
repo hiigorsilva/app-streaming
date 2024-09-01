@@ -4,9 +4,10 @@ import { ContainerGrid } from '@/components/ContainerGrid'
 import { ErrorComponent } from '@/components/ErrorComponent'
 import { Loading } from '@/components/Loading'
 import { MovieItem } from '@/components/MovieItem'
-import { useMovies } from '@/utils/queries'
+import { useMovies, useMoviesPrefetch } from '@/utils/queries'
 
 const MoviesPage = () => {
+  useMoviesPrefetch()
   const { data: movies, isFetching, error } = useMovies()
 
   if (!movies) return

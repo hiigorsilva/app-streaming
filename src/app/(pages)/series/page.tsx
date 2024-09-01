@@ -4,9 +4,10 @@ import { ContainerGrid } from '@/components/ContainerGrid'
 import { ErrorComponent } from '@/components/ErrorComponent'
 import { Loading } from '@/components/Loading'
 import { MovieItem } from '@/components/MovieItem'
-import { useSeries } from '@/utils/queries'
+import { useSeries, useSeriesPrefetch } from '@/utils/queries'
 
 const SeriesPage = () => {
+  useSeriesPrefetch()
   const { data: movies, isFetching, error } = useSeries()
 
   if (!movies) return
