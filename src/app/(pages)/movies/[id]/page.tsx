@@ -1,210 +1,188 @@
 'use client'
 
-import { ButtonIcon } from '@/components/ButtonIcon'
-import { FeatureMovieTitle } from '@/components/FeatureMovie/FeatureMovieTitle'
+import { ErrorComponent } from '@/components/ErrorComponent'
 import { Loading } from '@/components/Loading'
 import { Button } from '@/components/ui/button'
 import { formatCurrencyToBRL } from '@/functions/formatCurrency'
-import { formatterNumber } from '@/functions/formatNumber'
 import { formatRating } from '@/functions/formatRating'
 import { formatTimeDuration } from '@/functions/formatTimeDuration'
-import { useMovieInfo } from '@/utils/queries'
-import { PlusIcon, ThumbsDownIcon, ThumbsUpIcon } from 'lucide-react'
+import { useMovieId } from '@/utils/queries'
+import { PlusIcon, ThumbsUpIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-type MovieDetailsPageProps = {
+type MoviePageProps = {
   params: {
     id: number
-    type: 'movie' | 'tv'
   }
 }
 
-const MovieDetailsPage = ({ params }: MovieDetailsPageProps) => {
+const MovieItemPage = ({ params }: MoviePageProps) => {
   const movieId = params.id
-  const type = params.type
 
-  const { data: movie, isLoading, error } = useMovieInfo(movieId, type)
-
+  const { data: movie, isLoading, error } = useMovieId(movieId)
+  if (!movie) return
   if (isLoading) return <Loading />
-  if (error || !movie) return <div>Erro ao buscar informações do filme.</div>
+  if (error) return <ErrorComponent>Erro ao buscar filme</ErrorComponent>
 
-  const movieDate = new Date(movie.release_date).getFullYear()
-  const tvDate = new Date(movie.first_air_date).getFullYear()
-
+  const releaseDate = new Date(movie.release_date).getFullYear()
   const genres = movie.genres.map((genre) => genre.name).join(', ')
   const languages = movie.spoken_languages
-    .map((lang) => lang.english_name || lang.name)
+    .map((language) => language.english_name || language.name)
     .join(', ')
-  const prodCompanies = movie.production_companies
+  const prodution = movie.production_companies
     .map((prod) => prod.name)
     .join(', ')
+  const balance = movie.revenue - movie.budget
 
   return (
-    <>
-      {/* CAPA DE DESTAQUE */}
-      <div className='relative h-[80dvh] w-full'>
-        {/* CAPA DO FILME */}
+    <section className='min-h-dvh w-full'>
+      {/* BANNER */}
+      <div className='relative h-[90dvh] w-full'>
+        {/* IMAGEM */}
         <Image
-          className='object-cover w-full h-full -z-[1]'
+          className='w-full h-full object-cover -z-10'
           src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-          alt={`${movie.original_name}`}
-          priority
+          alt={movie.original_title}
           fill
-          draggable={false}
+          priority
         />
-        {/* INFORMAÇÕES */}
-        <div className='w-full h-full flex items-end bg-gradient-to-t from-zinc-950 from-10% sm:from-10% to-transparent to-70% sm:to-60%'>
-          <div className='h-full w-full flex items-end bg-gradient-to-r from-zinc-950/80 from-0% md:from-30% to-transparent to-0% md:to-60%'>
-            {/* HEADLINE + INFO + ACTION */}
-            <div className='max-w-none w-full sm:max-w-xl text-center sm:text-left space-y-4 p-5 mb-20 sm:mb-8'>
-              {/* TÍTULO */}
-              <div className='space-y-1'>
-                <FeatureMovieTitle>
-                  {movie.name || movie.title || movie.original_name}
-                </FeatureMovieTitle>
 
-                {/* TAGLINE */}
-                {movie.tagline && (
-                  <p className='text-zinc-400 line-clamp-3'>{movie.tagline}</p>
-                )}
-              </div>
+        {/* BANNER */}
+        <div className='w-full h-full bg-gradient-to-t from-zinc-950 to-zinc-950/5 to-60%'>
+          <div className='w-full h-full flex items-end bg-gradient-to-r from-zinc-950/90 from-20% to-zinc-950/5 to-60% px-5 py-20'>
+            <div className='max-w-xl w-full flex flex-col gap-3'>
+              {/* TITLE */}
+              <h1 className='font-semibold text-5xl'>
+                {movie.title || movie.original_title}
+              </h1>
 
-              {/* BOTÃO */}
-              <div className='flex items-center gap-2 md:gap-4 w-fit sm:w-full mx-auto sm:mx-0'>
+              {/* BUTTON ACTIONS */}
+              <div className='flex items-center gap-3'>
                 <Button
-                  className='flex items-center gap-2 max-w-xs min-w-36 w-full font-semibold rounded text-zinc-950 bg-zinc-50 hover:bg-zinc-50/75'
+                  className='flex items-center gap-2 max-w-48 w-full font-semibold text-sm rounded'
                   asChild
                 >
-                  <Link
-                    href={movie.homepage || `https://www.netflix.com/browse`}
-                    target='_blank'
-                  >
-                    <div className='relative h-[14px] w-[14px]'>
-                      <Image
-                        className='h-[14px] w-auto object-contain'
-                        src='/icon-play.svg'
-                        alt='Ícone de play'
-                        fill
-                      />
-                    </div>
+                  <Link href={movie.homepage} target='_blank'>
+                    <Image
+                      className='text-zinc-950'
+                      src='/icon-play.svg'
+                      alt='Assistir'
+                      width={12}
+                      height={14}
+                    />
                     Assistir
                   </Link>
                 </Button>
 
-                <ButtonIcon disabled>
-                  <PlusIcon className='text-zinc-50' size={20} />
-                </ButtonIcon>
+                <Button className='size-10 bg-transparent hover:bg-transparent border border-zinc-50 rounded-full p-2 transition-all hover:opacity-60'>
+                  <PlusIcon className='text-zinc-50' />
+                </Button>
 
-                <ButtonIcon disabled>
-                  <ThumbsUpIcon className='text-zinc-50' size={20} />
-                </ButtonIcon>
-
-                <ButtonIcon disabled>
-                  <ThumbsDownIcon className='text-zinc-50' size={20} />
-                </ButtonIcon>
+                <Button className='size-10 bg-transparent hover:bg-transparent border border-zinc-50 rounded-full p-2 transition-all hover:opacity-60'>
+                  <ThumbsUpIcon className='text-zinc-50' />
+                </Button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* DETALHES DO FILME */}
-      <div className='flex items-center gap-3 px-5 font-semibold'>
-        <span className='text-green-500'>{`${formatRating(Number(movie.vote_average))}% relevante`}</span>
-        <span>{movieDate || tvDate}</span>
-        {movie.runtime > 0 && (
-          <span className='text-zinc-400'>
-            {formatTimeDuration(movie.runtime)}
-          </span>
-        )}
-        <span className='flex justify-between items-center w-fit h-fit text-xs py-px px-1.5 rounded border border-zinc-200'>
-          HD
-        </span>
-      </div>
+      {/* DETAILS */}
+      <div className='px-5 space-y-6'>
+        <ul className='flex items-center gap-4 font-semibold'>
+          {/* RELEVÂNCIA */}
+          {movie.vote_average && (
+            <li className='text-green-400'>{`${formatRating(movie.vote_average)}% relevante`}</li>
+          )}
 
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-3 p-5'>
-        <ul className='space-y-4'>
-          <li className={`flex ${genres.length > 2 ? 'flex-col' : ''} gap-1.5`}>
-            <h3 className='font-semibold text-zinc-50'>Gêneros: </h3>
-            {genres && <p className='text-zinc-400'>{genres}</p>}
-            {!genres && (
-              <p className='text-zinc-400'>
-                Nenhum gênero foi adicionado a esta obra.
-              </p>
-            )}
+          {/* ANO DE LANÇAMENTO */}
+          {releaseDate && <li>{releaseDate}</li>}
+
+          {/* DURAÇÃO */}
+          {movie.runtime > 0 && <li>{formatTimeDuration(movie.runtime)}</li>}
+
+          <li className='text-xs leading-none uppercase px-1.5 py-1 rounded border border-zinc-50'>
+            HD
           </li>
-
-          {movie.overview && (
-            <li className='max-w-lg w-full flex-1'>
-              <h3 className='font-semibold text-zinc-50'>Sinópse: </h3>
-              <p className='font-normal text-zinc-400'>{movie.overview}</p>
-            </li>
-          )}
         </ul>
 
-        <ul className='space-y-4'>
-          {prodCompanies && (
-            <li className='flex flex-col md:flex-row gap-1.5'>
-              <h3 className='font-semibold text-zinc-50'>Produção:</h3>
-              <p className='font-normal text-zinc-400'>{prodCompanies}</p>
-            </li>
-          )}
+        {/* GRID */}
+        <div className='grid grid-cols-2 gap-4'>
+          {/* LEFT */}
+          <ul className='space-y-4'>
+            {/* GENRES */}
+            {genres && (
+              <li className='flex items-center gap-2'>
+                <h3 className='font-semibold'>Gêneros:</h3>
+                <p className='font-normal max-w-xl text-zinc-400'>{genres}</p>
+              </li>
+            )}
 
-          {movie.number_of_seasons && (
-            <li className='flex gap-1.5'>
-              <h3 className='font-semibold text-zinc-50'>Temporadas:</h3>
-              <p className='font-normal text-zinc-400'>
-                {movie.number_of_seasons}
-              </p>
-            </li>
-          )}
+            {/* SINOPSE */}
+            {movie.overview && (
+              <li className='space-y-1'>
+                <h3 className='font-semibold'>Sinópse:</h3>
+                <p className='font-normal max-w-xl text-zinc-400'>
+                  {movie.overview}
+                </p>
+              </li>
+            )}
+          </ul>
 
-          {movie.runtime > 0 && (
-            <li className='flex gap-1.5'>
-              <h3 className='font-semibold text-zinc-50'>Duração: </h3>
-              <p className='text-zinc-400'>
-                {formatTimeDuration(movie.runtime)}
-              </p>
-            </li>
-          )}
+          {/* RIGHT */}
+          <ul className='space-y-4'>
+            {/* PRODUTION */}
+            {prodution && (
+              <li className='flex items-center gap-2'>
+                <h3 className='font-semibold'>Produtora:</h3>
+                <p className='font-normal text-zinc-400'>{prodution}</p>
+              </li>
+            )}
 
-          {languages && (
-            <li className='flex gap-1.5'>
-              <h3 className='font-semibold text-zinc-50'>Idioma:</h3>
-              <p className='text-zinc-400'>{languages}</p>
-            </li>
-          )}
+            {/* LANGUAGES */}
+            {languages && (
+              <li className='flex items-center gap-2'>
+                <h3 className='font-semibold'>Idioma:</h3>
+                <p className='font-normal text-zinc-400'>{languages}</p>
+              </li>
+            )}
 
-          {movie.budget > 0 && (
-            <li className='flex gap-1.5'>
-              <h3 className='font-semibold text-zinc-50'>Orçamento: </h3>
-              <p className='text-zinc-400'>
-                {formatCurrencyToBRL(movie.budget)}
-              </p>
-            </li>
-          )}
+            {/* BUDGET */}
+            {movie.budget > 0 && (
+              <li className='flex items-center gap-2'>
+                <h3 className='font-semibold'>Orçamento:</h3>
+                <p className='font-normal text-zinc-400'>
+                  {formatCurrencyToBRL(movie.budget)}
+                </p>
+              </li>
+            )}
 
-          {movie.revenue > 0 && (
-            <li className='flex gap-1.5'>
-              <h3 className='font-semibold text-zinc-50'>Receita: </h3>
-              <p className='text-zinc-400'>
-                {formatCurrencyToBRL(movie.revenue)}
-              </p>
-            </li>
-          )}
+            {/* REVENUE */}
+            {movie.revenue > 0 && (
+              <li className='flex items-center gap-2'>
+                <h3 className='font-semibold'>Receita:</h3>
+                <p className='font-normal text-zinc-400'>
+                  {formatCurrencyToBRL(movie.revenue)}
+                </p>
+              </li>
+            )}
 
-          {movie.vote_count > 0 && (
-            <li className='flex gap-1.5'>
-              <h3 className='font-semibold text-zinc-50'>Avaliação:</h3>
-              <p className='text-zinc-400'>
-                Mais de {formatterNumber(movie.vote_count)} avaliações feitas.
-              </p>
-            </li>
-          )}
-        </ul>
+            {/* BALANCE */}
+            {movie.budget > 0 && movie.revenue > 0 && (
+              <li className='flex items-center gap-2'>
+                <h3 className='font-semibold'>
+                  {balance < 0 ? 'Prejuizo' : 'Lucro'}:
+                </h3>
+                <p className='font-normal text-zinc-400'>
+                  {formatCurrencyToBRL(balance)}
+                </p>
+              </li>
+            )}
+          </ul>
+        </div>
       </div>
-    </>
+    </section>
   )
 }
-export default MovieDetailsPage
+export default MovieItemPage

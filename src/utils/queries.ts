@@ -1,21 +1,13 @@
 'use client'
 
-import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { CategoryData, fetchCategories } from '@/hooks/getCategories'
-import { fetchMovieId, fetchTvId } from '@/hooks/getMovieId'
-import { Movie } from '@/types/Movie'
 import Error from 'next/error'
-import { fetchMovieFeature } from '@/hooks/getMovieToprated'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { Movie } from '@/types/Movie'
+import { fetchMovieId } from '@/hooks/getMovieId'
 import { fetchMovies } from '@/hooks/getMovies'
 import { fetchSeries } from '@/hooks/getSeries'
-
-// GET CATEGORIES
-export const useCategories = () => {
-  return useQuery<CategoryData[], Error>({
-    queryKey: ['categories'],
-    queryFn: fetchCategories,
-  })
-}
+import { fetchSerieId } from '@/hooks/getSerieId'
+import { Serie } from '@/types/Serie'
 
 // GET MOVIES
 export const useMovies = () => {
@@ -29,6 +21,14 @@ export const useMoviesPrefetch = async () => {
   return await queryClient.prefetchQuery({
     queryKey: ['movies'],
     queryFn: fetchMovies,
+  })
+}
+
+// GET MOVIES ID
+export const useMovieId = (id: number) => {
+  return useQuery<Movie, Error>({
+    queryKey: ['movies', id],
+    queryFn: () => fetchMovieId(id),
   })
 }
 
@@ -47,22 +47,10 @@ export const useSeriesPrefetch = async () => {
   })
 }
 
-export const useMovieInfo = (id: number, type: 'movie' | 'tv') => {
-  return useQuery<Movie, Error>({
-    queryKey: [type, id],
-    queryFn: () => {
-      if (type === 'movie') {
-        return fetchMovieId(id)
-      } else {
-        return fetchTvId(id)
-      }
-    },
-  })
-}
-
-export const useMovieFeature = () => {
-  return useQuery<Movie, Error>({
-    queryKey: ['toprated'],
-    queryFn: fetchMovieFeature,
+// GET SERIE ID
+export const useSerieId = (id: number) => {
+  return useQuery<Serie, Error>({
+    queryKey: ['movies', id],
+    queryFn: () => fetchSerieId(id),
   })
 }
