@@ -1,8 +1,8 @@
 import { api } from '@/service/api'
-import { Movie } from '@/types/Movie'
-import { MovieResponse } from '@/types/MovieResponse'
+import { SerieResponse } from '@/types/MovieResponse'
+import { Serie } from '@/types/Serie'
 
-export const fetchSeries = async (): Promise<Movie[]> => {
-  const response = await api.get<MovieResponse>('tv/top_rated')
+export const fetchSeries = async (): Promise<Serie[]> => {
+  const response = await api.get<SerieResponse>('tv/top_rated')
   return response.data.results
 }

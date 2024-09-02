@@ -2,4 +2,4 @@
 
 ### TODO
 
-- [ ] Resolver Bug de mostrar detalhes do filme clicado. Somente da aba de Populares e Série destaque da Home
+- [ ] Criar um componente de lista para a Home para renderizar cada MovieItem

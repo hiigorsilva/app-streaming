@@ -8,6 +8,7 @@ import { fetchMovies } from '@/hooks/getMovies'
 import { fetchSeries } from '@/hooks/getSeries'
 import { fetchSerieId } from '@/hooks/getSerieId'
 import { Serie } from '@/types/Serie'
+import { chooseRandomMovie } from '@/hooks/getFeatureMovie'
 
 // GET MOVIES
 export const useMovies = () => {
@@ -34,7 +35,7 @@ export const useMovieId = (id: number) => {
 
 // GET SERIES
 export const useSeries = () => {
-  return useQuery<Movie[], Error>({
+  return useQuery<Serie[], Error>({
     queryKey: ['tv'],
     queryFn: fetchSeries,
   })
@@ -52,5 +53,13 @@ export const useSerieId = (id: number) => {
   return useQuery<Serie, Error>({
     queryKey: ['movies', id],
     queryFn: () => fetchSerieId(id),
+  })
+}
+
+// GET FEATURE MOVIE
+export const useFeatureMovie = () => {
+  return useQuery<Serie | null, Error>({
+    queryKey: ['top_rated'],
+    queryFn: chooseRandomMovie,
   })
 }
