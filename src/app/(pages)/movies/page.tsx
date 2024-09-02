@@ -3,7 +3,7 @@
 import { ContainerGrid } from '@/components/ContainerGrid'
 import { ErrorComponent } from '@/components/ErrorComponent'
 import { Loading } from '@/components/Loading'
-import { useMovies, useMoviesPrefetch } from '@/utils/queries'
+import { useMovies, useMoviesPrefetch } from '@/queries/queries'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { MovieItem } from './MovieItem'

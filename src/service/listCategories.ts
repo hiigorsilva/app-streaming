@@ -1,54 +1,44 @@
-import { MovieCategory } from '@/types/MovieCategory'
+export type MovieCategory = {
+  title: string
+  endpoint: string
+}
 
+// MOVIE CATEGORIES
 export const endpoints: MovieCategory[] = [
   {
-    slug: 'populars',
-    title: 'Populares',
-    endpoint: '/tv/top_rated',
-  },
-  {
-    slug: 'trending',
-    title: 'Recomendados para Você',
-    endpoint: '/trending/all/week',
-  },
-  {
-    slug: 'toprated',
     title: 'Em Alta',
-    endpoint: '/movie/top_rated',
+    endpoint: 'movie/top_rated',
   },
   {
-    slug: 'action',
+    title: 'Recomendados para Você',
+    endpoint: 'trending/all/week',
+  },
+  {
     title: 'Ação',
-    endpoint: '/discover/movie?with_genres=28',
+    endpoint: 'discover/movie?with_genres=28',
   },
   {
-    slug: 'animation',
     title: 'Animação',
-    endpoint: '/discover/movie?with_genres=16',
+    endpoint: 'discover/movie?with_genres=16',
   },
   {
-    slug: 'crime',
     title: 'Crime',
-    endpoint: '/discover/movie?with_genres=80',
+    endpoint: 'discover/movie?with_genres=80',
   },
   {
-    slug: 'comedy',
     title: 'Comédia',
-    endpoint: '/discover/movie?with_genres=35',
+    endpoint: 'discover/movie?with_genres=35',
   },
   {
-    slug: 'documentary',
     title: 'Documentários',
-    endpoint: '/discover/movie?with_genres=99',
+    endpoint: 'discover/movie?with_genres=99',
   },
   {
-    slug: 'horror',
     title: 'Terror',
-    endpoint: '/discover/movie?with_genres=27',
+    endpoint: 'discover/movie?with_genres=27',
   },
   {
-    slug: 'romance',
     title: 'Romance',
-    endpoint: '/discover/movie?with_genres=10749',
+    endpoint: 'discover/movie?with_genres=10749',
   },
 ]

@@ -3,7 +3,7 @@
 import { ContainerGrid } from '@/components/ContainerGrid'
 import { ErrorComponent } from '@/components/ErrorComponent'
 import { Loading } from '@/components/Loading'
-import { useSeries, useSeriesPrefetch } from '@/utils/queries'
+import { useSeries, useSeriesPrefetch } from '@/queries/queries'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { SerieItem } from './SerieItem'

@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { formatCurrencyToBRL } from '@/functions/formatCurrency'
 import { formatRating } from '@/functions/formatRating'
 import { formatTimeDuration } from '@/functions/formatTimeDuration'
-import { useMovieId } from '@/utils/queries'
+import { useMovieId } from '@/queries/queries'
 import { PlusIcon, ThumbsUpIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -46,6 +46,7 @@ const MovieItemPage = ({ params }: MoviePageProps) => {
           alt={movie.original_title}
           fill
           priority
+          draggable={false}
         />
 
         {/* BANNER */}
@@ -70,6 +71,7 @@ const MovieItemPage = ({ params }: MoviePageProps) => {
                       alt='Assistir'
                       width={12}
                       height={14}
+                      draggable={false}
                     />
                     Assistir
                   </Link>
@@ -113,7 +115,7 @@ const MovieItemPage = ({ params }: MoviePageProps) => {
           <ul className='space-y-4'>
             {/* GENRES */}
             {genres && (
-              <li className='flex items-center gap-2'>
+              <li className='flex items-start gap-2'>
                 <h3 className='font-semibold'>Gêneros:</h3>
                 <p className='font-normal max-w-xl text-zinc-400'>{genres}</p>
               </li>
@@ -134,7 +136,7 @@ const MovieItemPage = ({ params }: MoviePageProps) => {
           <ul className='space-y-4'>
             {/* PRODUTION */}
             {prodution && (
-              <li className='flex items-center gap-2'>
+              <li className='flex items-start gap-2'>
                 <h3 className='font-semibold'>Produtora:</h3>
                 <p className='font-normal text-zinc-400'>{prodution}</p>
               </li>

@@ -4,7 +4,7 @@ import { ErrorComponent } from '@/components/ErrorComponent'
 import { Loading } from '@/components/Loading'
 import { Button } from '@/components/ui/button'
 import { formatRating } from '@/functions/formatRating'
-import { useSerieId } from '@/utils/queries'
+import { useSerieId } from '@/queries/queries'
 import { PlusIcon, ThumbsUpIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -47,6 +47,7 @@ const SerieItemPage = ({ params }: MoviePageProps) => {
           alt={serie.name || serie.original_name}
           fill
           priority
+          draggable={false}
         />
 
         {/* BANNER */}
@@ -71,6 +72,7 @@ const SerieItemPage = ({ params }: MoviePageProps) => {
                       alt='Assistir'
                       width={12}
                       height={14}
+                      draggable={false}
                     />
                     Assistir
                   </Link>
@@ -115,7 +117,7 @@ const SerieItemPage = ({ params }: MoviePageProps) => {
           <ul className='space-y-4'>
             {/* GENRES */}
             {allGenres && (
-              <li className='flex items-center gap-2'>
+              <li className='flex items-start gap-2'>
                 <h3 className='font-semibold'>Gêneros:</h3>
                 <p className='font-normal max-w-xl text-zinc-400'>
                   {allGenres}
