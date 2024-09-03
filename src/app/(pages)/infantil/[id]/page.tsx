@@ -53,6 +53,19 @@ const InfantilItemPage = ({ params }: InfantilPageProps) => {
         <div className='w-full h-full bg-gradient-to-t from-zinc-950 to-zinc-950/5 to-60%'>
           <div className='w-full h-full flex items-end bg-gradient-to-r from-zinc-950/90 from-20% to-zinc-950/5 to-60% px-5 py-20'>
             <div className='max-w-xl w-full flex flex-col gap-3'>
+              <div className='flex items-center gap-2'>
+                <Image
+                  className='w-[0.625rem] h-[1.25rem]'
+                  src='/simbol-netflix.svg'
+                  alt='Série Netflix'
+                  width={10}
+                  height={20}
+                  draggable={false}
+                />
+                <span className='font-semibold text-xs text-zinc-200 uppercase tracking-[4px]'>
+                  Infantil
+                </span>
+              </div>
               {/* TITLE */}
               <h1 className='font-semibold text-5xl'>
                 {movie.title || movie.original_title}
@@ -64,7 +77,10 @@ const InfantilItemPage = ({ params }: InfantilPageProps) => {
                   className='flex items-center gap-2 max-w-48 w-full font-semibold text-sm rounded'
                   asChild
                 >
-                  <Link href={movie.homepage} target='_blank'>
+                  <Link
+                    href={movie.homepage || `https://netflix.com`}
+                    target='_blank'
+                  >
                     <Image
                       className='text-zinc-950'
                       src='/icon-play.svg'

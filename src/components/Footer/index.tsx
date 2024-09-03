@@ -39,6 +39,7 @@ export const Footer = () => {
               <Link
                 className='text-sm text-zinc-400 py-1 transition-colors hover:text-zinc-100'
                 href={link.url}
+                target='_blank'
               >
                 {link.name}
               </Link>
