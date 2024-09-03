@@ -10,6 +10,7 @@ import { fetchSerieId } from '@/hooks/getSerieId'
 import { Serie } from '@/types/Serie'
 import { chooseRandomSerie } from '@/hooks/getFeatureSerie'
 import { fetchAllCategories } from '@/hooks/getAllCategories'
+import { fetchSearchMovie } from '@/hooks/getSearch'
 
 // GET MOVIES
 export const useMovies = () => {
@@ -78,5 +79,12 @@ export const useAllCategories = () => {
   return useQuery({
     queryKey: ['allMovies'],
     queryFn: fetchAllCategories,
+  })
+}
+
+export const useSearchMovie = (search: string) => {
+  return useQuery<Movie[], Error>({
+    queryKey: ['movies', search],
+    queryFn: () => fetchSearchMovie(search),
   })
 }

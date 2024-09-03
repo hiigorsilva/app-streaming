@@ -5,7 +5,7 @@ import { links } from './headerLinks'
 import { Logo } from './logo'
 import { Button } from '../ui/button'
 import Image from 'next/image'
-import { BellIcon, MenuIcon, SearchIcon } from 'lucide-react'
+import { BellIcon, MenuIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import {
   Sheet,
@@ -15,6 +15,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '../ui/sheet'
+import { SearchBar } from '../SearchBar'
 
 export const Header = () => {
   const [blackHeader, setBlackHeader] = useState(false)
@@ -68,23 +69,22 @@ export const Header = () => {
 
             {/* CONTA */}
             <ul className='flex items-center gap-6'>
+              {/* SEARCH BAR */}
               <li>
-                <Button
-                  size='icon'
-                  className='text-sm text-zinc-300 hover:text-zinc-50 bg-transparent hover:bg-transparent'
-                >
-                  <SearchIcon size={24} />
-                </Button>
+                <SearchBar />
               </li>
+
+              {/* NOTIFICATION */}
               <li>
                 <Button
                   size='icon'
                   className='text-sm text-zinc-300 hover:text-zinc-50 bg-transparent hover:bg-transparent'
                 >
-                  <BellIcon size={24} />
+                  <BellIcon size={20} />
                 </Button>
               </li>
 
+              {/* PROFILE */}
               <li>
                 <Button
                   size='icon'
@@ -94,8 +94,8 @@ export const Header = () => {
                     className='rounded'
                     src='/profile.webp'
                     alt='Foto de perfil'
-                    width={32}
-                    height={32}
+                    width={28}
+                    height={28}
                     draggable={false}
                   />
                 </Button>
@@ -136,13 +136,7 @@ export const Header = () => {
                   <div className='space-y-2'>
                     <li>
                       <SheetTrigger asChild>
-                        <Link
-                          href='/'
-                          className='w-full flex justify-start items-center gap-3 text-base text-zinc-300 hover:text-red-500 p-4 rounded bg-transparent hover:bg-zinc-900/50'
-                        >
-                          <SearchIcon size={20} />
-                          Search
-                        </Link>
+                        <SearchBar />
                       </SheetTrigger>
                     </li>
 
