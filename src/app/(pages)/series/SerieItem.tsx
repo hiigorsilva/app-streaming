@@ -19,7 +19,11 @@ export const SerieItem = ({ serie }: SerieItemProps) => {
           <li className='relative min-w-40 md:min-w-48 w-full min-h-60 md:min-h-72 h-full cursor-pointer transition scale-95 hover:scale-100'>
             <Image
               className={`w-full h-full object-cover rounded`}
-              src={`https://image.tmdb.org/t/p/w300${serie.poster_path}`}
+              src={
+                serie.poster_path
+                  ? `https://image.tmdb.org/t/p/w300${serie.poster_path}`
+                  : '/image-not-found.webp'
+              }
               alt={serie.name || serie.original_name}
               width={300}
               height={450}

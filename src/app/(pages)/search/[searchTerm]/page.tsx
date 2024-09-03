@@ -24,24 +24,38 @@ const SearchTermPage = ({ params }: SearchPageProps) => {
   if (error) return <ErrorComponent>Erro ao carregar filmes.</ErrorComponent>
 
   return (
-    <section className='mt-[72px] pt-4 space-y-4'>
-      <div className='px-5 space-y-2'>
-        <h2 className='font-semibold text-3xl text-zinc-200'>Filmes</h2>
-        <p className='text-sm space-x-2'>
-          <span>Você está buscando por:</span>
-          <span className='font-semibold text-zinc-400 uppercase'>
-            {formatStringDecode(searchTerm)}
-          </span>
-        </p>
-      </div>
+    <section className='mt-[72px] pt-4 space-y-6'>
+      {/* NENHUM RESULTDO ENCONTRADO */}
+      {movies.length === 0 && (
+        <div className='px-5 space-y-3'>
+          <h1 className='font-semibold text-2xl text-zinc-200'>
+            Nenhum resultado encontrado.
+          </h1>
+        </div>
+      )}
 
-      <ContainerGrid>
-        {movies.map((movie) => (
-          <Link key={movie.id} href={`/movies/${movie.id}`}>
-            <MovieItem movie={movie} />
-          </Link>
-        ))}
-      </ContainerGrid>
+      {movies.length > 0 && (
+        <>
+          <div className='px-5 space-y-3'>
+            {/* RESULTADO ENCONTRADO */}
+            <h2 className='font-semibold text-3xl text-zinc-200'>Filmes</h2>
+            <p className='text-sm space-x-2'>
+              <span>Você buscou por:</span>
+              <span className='font-semibold text-zinc-400 uppercase'>
+                {formatStringDecode(searchTerm)}
+              </span>
+            </p>
+          </div>
+
+          <ContainerGrid>
+            {movies.map((movie) => (
+              <Link key={movie.id} href={`/movies/${movie.id}`}>
+                <MovieItem movie={movie} />
+              </Link>
+            ))}
+          </ContainerGrid>
+        </>
+      )}
     </section>
   )
 }

@@ -19,7 +19,11 @@ export const InfantilItem = ({ movie }: InfantilItemProps) => {
           <li className='relative min-w-40 md:min-w-48 w-full min-h-60 md:min-h-72 h-full cursor-pointer transition scale-95 hover:scale-100'>
             <Image
               className={`w-full h-full object-cover rounded`}
-              src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+              src={
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+                  : '/image-not-found.webp'
+              }
               alt={movie.title || movie.original_title}
               width={300}
               height={450}

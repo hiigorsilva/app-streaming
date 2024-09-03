@@ -28,7 +28,7 @@ export const SearchBar = () => {
       <DialogTrigger asChild>
         <Link
           href='/'
-          className='w-full flex justify-start items-center gap-3 text-base text-zinc-300 hover:text-red-500 p-4 rounded bg-transparent hover:bg-zinc-900/50'
+          className='w-full flex justify-start items-center gap-3 text-base text-zinc-300 hover:text-red-500 p-4 rounded bg-transparent hover:bg-zinc-900/50 md:hover:bg-transparent md:hover:text-zinc-50'
         >
           <SearchIcon size={20} />
           <span className='block md:hidden'>Search</span>
