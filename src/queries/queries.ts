@@ -4,7 +4,7 @@ import Error from 'next/error'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { Movie } from '@/types/Movie'
 import { fetchMovieId } from '@/hooks/getMovieId'
-import { fetchMovies } from '@/hooks/getMovies'
+import { fetchMovieInfantil, fetchMovies } from '@/hooks/getMovies'
 import { fetchSeries } from '@/hooks/getSeries'
 import { fetchSerieId } from '@/hooks/getSerieId'
 import { Serie } from '@/types/Serie'
@@ -57,11 +57,19 @@ export const useSerieId = (id: number) => {
   })
 }
 
-// GET FEATURE MOVIE
+// GET FEATURE SERIE
 export const useFeatureSerie = () => {
   return useQuery<Serie | null, Error>({
     queryKey: ['top_rated'],
     queryFn: chooseRandomSerie,
+  })
+}
+
+// GET INFANTIL MOVIE
+export const useMovieInfantil = () => {
+  return useQuery<Movie[], Error>({
+    queryKey: ['infantil'],
+    queryFn: fetchMovieInfantil,
   })
 }
 

@@ -15,7 +15,7 @@ export const MovieItem = ({ movie }: MovieItemProps) => {
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger>
+        <TooltipTrigger asChild>
           <li className='relative min-w-40 md:min-w-48 w-full min-h-60 md:min-h-72 h-full cursor-pointer transition scale-95 hover:scale-100'>
             <Image
               className={`w-full h-full object-cover rounded`}

@@ -3,6 +3,12 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '../ui/tooltip'
 
 type MovieProps = {
   title: string
@@ -57,23 +63,29 @@ export const MovieRow = ({ title, movies }: MovieProps) => {
         >
           {movies.length > 0 &&
             movies.map((movie) => (
-              <li
-                key={movie.id}
-                title={movie.title || movie.original_title}
-                className='relative min-w-40 md:min-w-48 w-full min-h-60 md:min-h-72 h-full cursor-pointer transition scale-95 hover:scale-100'
-              >
-                <Link href={`/movies/${movie.id}`}>
-                  <Image
-                    className={`w-full h-full object-cover rounded`}
-                    src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-                    alt={movie.title || movie.original_title}
-                    width={300}
-                    height={450}
-                    priority
-                    draggable={false}
-                  />
-                </Link>
-              </li>
+              <TooltipProvider key={movie.id}>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <li className='relative min-w-40 md:min-w-48 w-full min-h-60 md:min-h-72 h-full cursor-pointer transition scale-95 hover:scale-100'>
+                      <Link href={`/movies/${movie.id}`}>
+                        <Image
+                          className={`w-full h-full object-cover rounded`}
+                          src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                          alt={movie.title || movie.original_title}
+                          width={300}
+                          height={450}
+                          priority
+                          draggable={false}
+                        />
+                      </Link>
+                    </li>
+                  </TooltipTrigger>
+
+                  <TooltipContent className='bg-zinc-800 border border-zinc-700/80 rounded'>
+                    {movie.title || movie.original_title}
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             ))}
         </ul>
       </div>

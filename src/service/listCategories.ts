@@ -18,20 +18,20 @@ export const endpoints: MovieCategory[] = [
     endpoint: 'discover/movie?with_genres=28',
   },
   {
-    title: 'Animação',
-    endpoint: 'discover/movie?with_genres=16',
+    title: 'Comédia',
+    endpoint: 'discover/movie?with_genres=35',
   },
   {
     title: 'Crime',
     endpoint: 'discover/movie?with_genres=80',
   },
   {
-    title: 'Comédia',
-    endpoint: 'discover/movie?with_genres=35',
+    title: 'Guerra',
+    endpoint: 'discover/movie?with_genres=10752',
   },
   {
-    title: 'Documentários',
-    endpoint: 'discover/movie?with_genres=99',
+    title: 'Ficção científica',
+    endpoint: 'discover/movie?with_genres=878',
   },
   {
     title: 'Terror',

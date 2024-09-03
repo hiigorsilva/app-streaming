@@ -4,14 +4,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip'
-import { Serie } from '@/types/Serie'
+import { Movie } from '@/types/Movie'
 import Image from 'next/image'
 
-type SerieItemProps = {
-  serie: Serie
+type InfantilItemProps = {
+  movie: Movie
 }
 
-export const SerieItem = ({ serie }: SerieItemProps) => {
+export const InfantilItem = ({ movie }: InfantilItemProps) => {
   return (
     <TooltipProvider>
       <Tooltip>
@@ -19,8 +19,8 @@ export const SerieItem = ({ serie }: SerieItemProps) => {
           <li className='relative min-w-40 md:min-w-48 w-full min-h-60 md:min-h-72 h-full cursor-pointer transition scale-95 hover:scale-100'>
             <Image
               className={`w-full h-full object-cover rounded`}
-              src={`https://image.tmdb.org/t/p/w300${serie.poster_path}`}
-              alt={serie.name || serie.original_name}
+              src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+              alt={movie.title || movie.original_title}
               width={300}
               height={450}
               priority
@@ -30,7 +30,7 @@ export const SerieItem = ({ serie }: SerieItemProps) => {
         </TooltipTrigger>
 
         <TooltipContent className='bg-zinc-800 border border-zinc-700/80 rounded'>
-          {serie.name || serie.original_name}
+          {movie.title || movie.original_title}
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
