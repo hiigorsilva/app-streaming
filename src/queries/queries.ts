@@ -11,6 +11,7 @@ import { Serie } from '@/types/Serie'
 import { chooseRandomSerie } from '@/hooks/getFeatureSerie'
 import { fetchAllCategories } from '@/hooks/getAllCategories'
 import { fetchSearchMovie } from '@/hooks/getSearch'
+import { Media } from '@/types/Media'
 
 // GET MOVIES
 export const useMovies = () => {
@@ -83,7 +84,7 @@ export const useAllCategories = () => {
 }
 
 export const useSearchMovie = (search: string) => {
-  return useQuery<Movie[], Error>({
+  return useQuery<Media[], Error>({
     queryKey: ['movies', search],
     queryFn: () => fetchSearchMovie(search),
   })
