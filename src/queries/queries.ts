@@ -12,6 +12,7 @@ import { chooseRandomSerie } from '@/hooks/getFeatureSerie'
 import { fetchAllCategories } from '@/hooks/getAllCategories'
 import { fetchSearchMovie } from '@/hooks/getSearch'
 import { Media } from '@/types/Media'
+import { fetchUpComing } from '@/hooks/getUpComing'
 
 // GET MOVIES
 export const useMovies = () => {
@@ -83,9 +84,18 @@ export const useAllCategories = () => {
   })
 }
 
+// GET SEARCH
 export const useSearchMovie = (search: string) => {
   return useQuery<Media[], Error>({
     queryKey: ['movies', search],
     queryFn: () => fetchSearchMovie(search),
+  })
+}
+
+// GET EM BREVE
+export const useUpComing = () => {
+  return useQuery<Movie[], Error>({
+    queryKey: ['emBreve'],
+    queryFn: fetchUpComing,
   })
 }
