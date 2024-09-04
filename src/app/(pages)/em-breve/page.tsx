@@ -26,7 +26,9 @@ const UpComingPage = () => {
 
   return (
     <section className='mt-[72px] pt-4 space-y-6'>
-      <h2 className='font-semibold text-3xl px-5'>Em breve no catálogo</h2>
+      <h2 className='font-semibold text-3xl px-5'>
+        Em breve nos catálogos Netflix
+      </h2>
 
       <ContainerGrid>
         {movies.map((movie) => (

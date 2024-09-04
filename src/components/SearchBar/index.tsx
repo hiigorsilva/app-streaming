@@ -2,7 +2,6 @@ import { SearchIcon } from 'lucide-react'
 import Link from 'next/link'
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -56,7 +55,7 @@ export const SearchBar = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <DialogClose asChild>
+          <DialogTrigger asChild>
             <Button
               type='submit'
               className='min-h-10 w-full sm:max-w-28 text-sm text-zinc-50 hover:text-zinc-50 rounded transition-all bg-red-600 hover:bg-red-700 focus:outline-none'
@@ -64,7 +63,7 @@ export const SearchBar = () => {
             >
               Buscar
             </Button>
-          </DialogClose>
+          </DialogTrigger>
         </form>
       </DialogContent>
     </Dialog>
