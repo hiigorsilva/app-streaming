@@ -1,5 +1,7 @@
 'use client'
 
+import { ContainerBannerId } from '@/components/Containers/ContainerBannerId'
+import { ContainerDetailsId } from '@/components/Containers/ContainerDetailsId'
 import { ErrorComponent } from '@/components/ErrorComponent'
 import { Loading } from '@/components/Loading'
 import { Button } from '@/components/ui/button'
@@ -51,8 +53,8 @@ const SerieItemPage = ({ params }: MoviePageProps) => {
         />
 
         {/* BANNER */}
-        <div className='w-full h-full bg-gradient-to-t from-zinc-950 to-zinc-950/5 to-60%'>
-          <div className='w-full h-full flex items-end bg-gradient-to-r from-zinc-950/90 from-20% to-zinc-950/5 to-60% px-5 py-20'>
+        <ContainerBannerId>
+          <div className='w-full h-full flex items-end px-5 py-20'>
             <div className='max-w-xl w-full flex flex-col gap-3'>
               <div className='flex items-center gap-2'>
                 <Image
@@ -68,7 +70,7 @@ const SerieItemPage = ({ params }: MoviePageProps) => {
                 </span>
               </div>
               {/* TITLE */}
-              <h1 className='font-semibold text-5xl'>
+              <h1 className='font-semibold text-3xl md:text-5xl'>
                 {serie.name || serie.original_name}
               </h1>
 
@@ -101,11 +103,12 @@ const SerieItemPage = ({ params }: MoviePageProps) => {
               </div>
             </div>
           </div>
-        </div>
+        </ContainerBannerId>
       </div>
+
       {/* DETAILS */}
       <div className='px-5 space-y-6'>
-        <ul className='flex items-center gap-4 font-semibold'>
+        <ul className='flex items-center gap-2 sm:gap-4 font-semibold'>
           {/* RELEVÂNCIA */}
           {serie.vote_average && (
             <li className='text-green-400'>{`${formatRating(serie.vote_average)}% relevante`}</li>
@@ -125,12 +128,12 @@ const SerieItemPage = ({ params }: MoviePageProps) => {
         </ul>
 
         {/* GRID */}
-        <div className='grid grid-cols-2 gap-4'>
+        <ContainerDetailsId>
           {/* LEFT */}
           <ul className='space-y-4'>
             {/* GENRES */}
             {allGenres && (
-              <li className='flex items-start gap-2'>
+              <li className='flex flex-col lg:flex-row items-start gap-2'>
                 <h3 className='font-semibold'>Gêneros:</h3>
                 <p className='font-normal max-w-xl text-zinc-400'>
                   {allGenres}
@@ -153,7 +156,7 @@ const SerieItemPage = ({ params }: MoviePageProps) => {
           <ul className='space-y-4'>
             {/* PRODUTION */}
             {prodution && (
-              <li className='flex items-start gap-2'>
+              <li className='flex flex-col lg:flex-row items-start gap-2'>
                 <h3 className='font-semibold'>Produtora:</h3>
                 <p className='font-normal text-zinc-400'>{prodution}</p>
               </li>
@@ -193,7 +196,7 @@ const SerieItemPage = ({ params }: MoviePageProps) => {
               </li>
             )}
           </ul>
-        </div>
+        </ContainerDetailsId>
       </div>
     </section>
   )

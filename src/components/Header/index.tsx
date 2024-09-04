@@ -44,7 +44,7 @@ export const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 h-[4.5rem] w-full transition-all ease-in duration-300
-      ${blackHeader ? 'backdrop-blur bg-zinc-950/90' : 'bg-gradient-to-b from-zinc-950/80 from-30% to-zinc-950/[0.01]'}`}
+      ${blackHeader ? 'backdrop-blur bg-zinc-950/95' : 'bg-gradient-to-b from-zinc-950/95 from-0% via-zinc-950/60 via-55% to-zinc-950/5 to-100%'}`}
     >
       <div className='w-full h-full flex justify-between items-center px-5'>
         <div className='w-full flex justify-between items-center gap-16'>

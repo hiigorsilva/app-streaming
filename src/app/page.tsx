@@ -42,8 +42,8 @@ export default function Home() {
         />
 
         {/* BANNER */}
-        <div className='w-full h-full bg-gradient-to-t from-zinc-950 to-zinc-950/5 to-60%'>
-          <div className='w-full h-full flex items-center bg-gradient-to-r from-zinc-950/95 from-30% to-zinc-950/5 to-60% px-5 py-20'>
+        <div className='w-full h-full bg-gradient-to-t from-zinc-950 via-zinc-950/80 via-45% to-zinc-950/5 to-70%'>
+          <div className='w-full h-full flex items-end md:items-center bg-none md:bg-gradient-to-r from-zinc-950 via-zinc-950/80 via-40% to-zinc-950/5 to-70% px-5 py-20'>
             <div className='max-w-xl w-full flex flex-col gap-4'>
               {/* INFO */}
               <ul className='flex items-center gap-6'>
@@ -74,7 +74,7 @@ export default function Home() {
               </ul>
 
               {/* TITLE */}
-              <h1 className='font-semibold text-5xl'>
+              <h1 className='font-semibold text-4xl md:text-5xl'>
                 {serie.name || serie.original_name}
               </h1>
 

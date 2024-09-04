@@ -1,6 +1,6 @@
 'use client'
 
-import { ContainerGrid } from '@/components/ContainerGrid'
+import { ContainerGrid } from '@/components/Containers/ContainerGrid'
 import { ErrorComponent } from '@/components/ErrorComponent'
 import { Loading } from '@/components/Loading'
 import { useMovies, useMoviesPrefetch } from '@/queries/queries'
