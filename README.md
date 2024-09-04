@@ -2,4 +2,4 @@
 
 ### TODO
 
-- [ ] Criar um componente de lista para a Home para renderizar cada MovieItem
+- [ ] Fazer o responsivo de todas as telas
