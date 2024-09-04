@@ -126,7 +126,7 @@ export const Header = () => {
                       height={28}
                       draggable={false}
                     />
-                    Bem vindo, Higor!
+                    Olá, bem vindo(a)
                   </SheetDescription>
                 </SheetHeader>
 
