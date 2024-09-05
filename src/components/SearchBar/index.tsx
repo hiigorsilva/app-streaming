@@ -1,5 +1,4 @@
 import { SearchIcon } from 'lucide-react'
-import Link from 'next/link'
 import {
   Dialog,
   DialogContent,
@@ -25,13 +24,10 @@ export const SearchBar = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Link
-          href='/'
-          className='w-full flex justify-start items-center gap-3 text-base text-zinc-300 hover:text-red-500 p-4 rounded bg-transparent hover:bg-zinc-900/50 md:hover:bg-transparent md:hover:text-zinc-50'
-        >
+        <Button className='w-full flex justify-start items-center gap-3 text-base text-zinc-300 hover:text-red-500 p-4 rounded bg-transparent hover:bg-transparent md:hover:bg-transparent md:hover:text-zinc-50'>
           <SearchIcon size={20} />
           <span className='block md:hidden'>Search</span>
-        </Link>
+        </Button>
       </DialogTrigger>
 
       <DialogContent className='max-w-lg w-[90%] rounded-[.5rem] sm:rounded-xl'>

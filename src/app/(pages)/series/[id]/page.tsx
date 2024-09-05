@@ -191,7 +191,7 @@ const SerieItemPage = ({ params }: MoviePageProps) => {
             {/* CRIADOR DA SERIE */}
             {nameCreatedBy && (
               <li className='flex items-center gap-2'>
-                <h3 className='font-semibold'>Criador(a):</h3>
+                <h3 className='font-semibold'>Criado por:</h3>
                 <p className='font-normal text-zinc-400'>{nameCreatedBy}</p>
               </li>
             )}
