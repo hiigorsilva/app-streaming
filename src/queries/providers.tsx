@@ -11,7 +11,11 @@ export const Providers = ({ children }: ProvidersProps) => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: 60 * (60 * 1000), // 60 minutos
+        staleTime: 60 * (60 * 1000), // 60 minutos ou 1 hora
+        gcTime: 24 * (60 * 60 * 1000), // 24 horas
+        refetchOnMount: false,
+        refetchOnReconnect: false,
+        refetchOnWindowFocus: false,
       },
     },
   })
