@@ -10,11 +10,11 @@ import { MovieItem } from './MovieItem'
 
 const MoviesPage = () => {
   useMoviesPrefetch()
-  const { data: movies, isFetching, error } = useMovies()
+  const { data: movies, isLoading, error } = useMovies()
   const pathname = usePathname()
 
   if (!movies) return
-  if (isFetching) return <Loading />
+  if (isLoading) return <Loading />
   if (error) return <ErrorComponent>Erro ao carregar filmes.</ErrorComponent>
 
   return (
