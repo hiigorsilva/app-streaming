@@ -93,11 +93,17 @@ const MovieItemPage = ({ params }: MoviePageProps) => {
                   </Link>
                 </Button>
 
-                <Button className='size-10 bg-transparent hover:bg-transparent border border-zinc-50 rounded-full p-2 transition-all hover:opacity-60'>
+                <Button
+                  className='size-10 bg-transparent hover:bg-transparent border border-zinc-50 rounded-full p-2 transition-all hover:opacity-60'
+                  title='Adicionar a minha lista'
+                >
                   <PlusIcon className='text-zinc-50' />
                 </Button>
 
-                <Button className='size-10 bg-transparent hover:bg-transparent border border-zinc-50 rounded-full p-2 transition-all hover:opacity-60'>
+                <Button
+                  className='size-10 bg-transparent hover:bg-transparent border border-zinc-50 rounded-full p-2 transition-all hover:opacity-60'
+                  title='Marcar como gostei'
+                >
                   <ThumbsUpIcon className='text-zinc-50' />
                 </Button>
               </div>
