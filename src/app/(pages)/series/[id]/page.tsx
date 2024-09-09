@@ -80,7 +80,10 @@ const SerieItemPage = ({ params }: MoviePageProps) => {
                   className='flex items-center gap-2 max-w-48 w-full font-semibold text-sm rounded'
                   asChild
                 >
-                  <Link href={serie.homepage} target='_blank'>
+                  <Link
+                    href={serie.homepage || 'https://www.netflix.com/'}
+                    target='_blank'
+                  >
                     <Image
                       className='text-zinc-950'
                       src='/icon-play.svg'

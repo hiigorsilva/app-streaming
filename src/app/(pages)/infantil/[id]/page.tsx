@@ -80,7 +80,7 @@ const InfantilItemPage = ({ params }: InfantilPageProps) => {
                   asChild
                 >
                   <Link
-                    href={movie.homepage || `https://netflix.com`}
+                    href={movie.homepage || `https://www.netflix.com/`}
                     target='_blank'
                   >
                     <Image
