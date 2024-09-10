@@ -9,7 +9,10 @@ import { Footer } from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Netflix | Higor Code',
+  title: {
+    template: '%s | Higor Code',
+    default: 'Clone Netflix | Higor Code',
+  },
   description:
     'Assita filmes e séries com sua família no conforto de sua casa.',
 }
